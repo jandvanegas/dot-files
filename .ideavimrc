@@ -1,0 +1,119 @@
+source ~/.vimrc
+let mapleader = ","
+set easymotion ;install plugin and Acejump
+set sneak ; install with plugin
+
+; Actions on Visual Mode an Normal Mode
+nmap <leader>fh :action Find<CR>
+nmap <leader>fa :action FindInPath<CR>
+map <leader>fh :action Find<CR>
+map <leader>fa :action FindInPath<CR>
+
+
+; Actions on Visual Mode
+; Introduce
+map <leader>ia  :action IntroduceActionsGroup<CR>
+map <leader>ic  :action IntroduceConstant<CR>
+map <leader>if  :action IntroduceField<CR>
+map <leader>iF  :action IntroduceFunctionalParameter<CR>
+map <leader>ip  :action IntroduceParameter<CR>
+map <leader>iP  :action IntroduceParameterObject<CR>
+map <leader>iV  :action IntroduceVariable<CR>
+; Refactor
+map <leader>ri <Action>(Inline)
+map <leader>re  :action RenameElement<CR> 
+map <leader>r   :action RefactoringMenu<CR>
+; eXtract
+map <leader>xc  :action ExtractClass<CR>
+map <leader>xi  :action ExtractInclude<CR>
+map <leader>xI  :action ExtractInterface<CR>
+map <leader>xJ  :action ExtractJspTagAction<CR>
+map <leader>xm  :action ExtractMethod<CR>
+map <leader>xM  :action ExtractModule<CR>
+map <leader>xs  :action ExtractSuperclass<CR>
+
+; Code
+nmap <leader>cc :action CompareClipboardWithSelection<CR>
+
+; Actions on Normal Mode
+; Compare
+nmap <leader>cb :action Git.CompareWithBranch<CR>
+nmap <leader>cr :action Compare.Selected<CR>
+nmap <leader>ch :action LocalHistory.ShowHistory<CR>
+
+; Code
+nmap <leader>scc :action CodeCompletion<CR>
+nmap <leader>sci :action ShowIntentionActions<CR>
+nmap <leader>spi :action ParameterInfo<CR>
+
+nmap <leader>cf :action ReformatCode<CR>
+
+; Search
+nmap <leader>sa :action GotoAction<CR>
+nmap <leader>sc :action GotoClass<CR>
+nmap <leader>sf :action GotoFile<CR>
+nmap <leader>sl :action RecentLocations<CR>
+nmap <leader>sr :action RecentFiles<CR>
+nmap <leader>ss :action GotoSymbol<CR>
+
+
+; Go to
+nmap <leader>gi :action GotoImplementation<CR>
+nmap <leader>gd :action GotoDeclarationOnly<CR>
+nmap <leader>gu :action ShowUsages<CR>
+nmap <leader>gn <Action>(NextDiff)
+nmap <leader>gb <Action>(PreviousDiff)
+
+; Generate
+nmap <leader>gg :action Generate<CR>
+
+; Suggestions
+nmap <leader>h  :action QuickJavaDoc<CR>
+;nmap <leader>t  :action ExpressionTypeInfo<CR>
+
+;Terminal
+nmap <Leader>t :action ActivateTerminalToolWindow<CR>
+
+; Navigation
+nmap <leader>nb :action ShowNavBar<CR>
+nmap <leader>nt :NERDTree<CR>
+nmap <leader>ni <Action>(SelectIn)
+nmap <leader>nf <Action>(SelectInProjectView)
+nmap <leader>hb :action HideAllWindows<CR>
+
+; Refactor
+nmap <leader>rf :action RenameFile<CR>
+
+nmap <leader>pb :action EditorBackwardParagraph<CR>
+nmap <leader>pf :action EditorForwardParagraph<CR>
+
+
+; Zen
+nmap <leader>z  :action ToggleZenMode<CR>
+
+; Running
+nmap <leader>rr :action Run<CR>
+nmap <leader>rb :action BuildArtifact<CR>
+nmap <leader>ro :action NavBarToolBar<CR> ; Run options
+nmap <leader>rh <Action>(RunContext)
+
+; Debug
+nmap <leader>dr :action Debug<CR>
+nmap <leader>db :action ToggleLineBreakpoint<CR>
+nmap <leader>dh <Action>(RunClass)
+
+; Version
+nmap <leader>vb <Action>(Annotate)
+; Appereance
+nmap <leader>ei <Action>(EditorIncreaseFontSize)
+nmap <leader>ed <Action>(EditorDecreaseFontSize)
+
+
+nmap + :action ExpandRegionRecursively<CR>
+nmap - :action CollapseRegionRecursively<CR>
+nmap { :action GotoPreviousError<CR>
+nmap } :action GotoNextError<CR>
+nmap [[ <Action>(Back)
+nmap ]] <Action>(Forward)
+nmap = :action ExpandAllToLevel1<CR>
+
