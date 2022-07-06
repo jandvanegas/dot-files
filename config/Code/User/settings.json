@@ -1,0 +1,88 @@
+{
+  "workbench.editor.showTabs": false,
+  "breadcrumbs.enable": true,
+  "editor.tabSize": 2,
+  "terminal.integrated.fontFamily": "MesloLGL Nerd Font",
+  "vim.leader": ",",
+  "vim.visualModeKeyBindingsNonRecursive": [
+    { "before": [ "<Leader>", "r", "e"], "commands": [ "editor.action.rename" ] }, // Rename
+    { "before": [ "<Leader>", "i", "a"], "commands": [ "editor.action.refactor" ] }, // Introduce action group
+    { "before": [ "<Leader>", "i", "a"], "commands": [ "editor.action.refactor" ] }, // Refactor
+  ],
+  "vim.normalModeKeyBindingsNonRecursive": [
+    { "before": [ "leader", "w" ], "commands": [ "workbench.action.files.save" ] },
+    { "before": [ "leader", "z" ], "commands": [ "workbench.action.toggleZenMode" ] },
+    // VS Code
+    { "before": [ "<Leader>", "p" ], "commands": [ "workbench.action.showCommands" ] },
+    // Information
+    { "before": [ "<Leader>", "i" , "d"], "commands": [ "editor.action.peekDeclaration" ] },
+    { "before": [ "<Leader>", "i" , "i"], "commands": [ "editor.action.peekImplementation" ] },
+    // Terminal
+    { "before": [ "<Leader>", "t", "f" ], "commands": [ "terminal.focus" ] },
+    { "before": [ "<Leader>", "t", "x" ], "commands": [ "workbench.action.terminal.openNativeConsole" ] },
+    // Explorer
+    { "before": [ "<Leader>", "n", "f" ], "commands": [ "workbench.view.explorer" ] },
+    { "before": [ "<Leader>", "n", "b" ], "commands": [ "breadcrumbs.focusAndSelect" ] },
+    { "before": [ "<Leader>", "s", "x" ], "commands": [ "workbench.view.extensions" ] },
+    { "before": [ "<Leader>", "s", "f" ], "commands": [ "filesExplorer.findInWorkspace" ] },
+    { "before": [ "<Leader>", "s", "q" ], "commands": [ "workbench.action.quickOpen" ] },
+    { "before": [ "<Leader>", "s", "r" ], "commands": [ "workbench.action.showAllEditorsByMostRecentlyUsed" ] },
+
+    // Find
+    { "before": [ "<Leader>", "f", "a" ], "commands": [ "workbench.action.findInFiles" ] },
+    { "before": [ "<Leader>", "f", "h" ], "commands": [ "actions.find" ] },
+    // Code
+    { "before": [ "<Leader>", "c", "h" ], "commands": [ "editor.action.showHover" ] },
+    { "before": [ "<Leader>", "c", "f" ], "commands": [ "editor.action.formatDocument" ] },
+    { "before": [ "<Leader>", "g", "d" ], "commands": [ "editor.action.revealDefinition" ] },
+    { "before": [ "<Leader>", "g", "i" ], "commands": [ "editor.action.goToImplementation" ] },
+    { "before": [ "[" ], "commands": [ "workbench.action.navigateBack" ] },
+    { "before": [ "]" ], "commands": [ "workbench.action.navigateForward" ] },
+    { "before": [ "<Leader>", "h", "b" ], "commands": [ "workbench.action.toggleSidebarVisibility" ] },
+    // Running
+    { "before": [ "<Leader>", "r", "b" ], "commands": [ "workbench.action.tasks.build" ] },
+    { "before": [ "<Leader>", "r", "r" ], "commands": [ "workbench.action.tasks.runTask" ] },
+    // Debugging
+    { "before": [ "<Leader>", "d", "r" ], "commands": [ "workbench.action.debug.start" ] },
+    { "before": [ "<Leader>", "d", "b" ], "commands": [ "editor.debug.action.toggleInlineBreakpoint" ] },
+    { "before": [ "<Leader>", "d", "v" ], "commands": [ "workbench.view.debug" ] },
+      ],
+
+  "vim.sneak": true,
+  "vim.easymotion": true,
+  "json.schemas": [],
+  "aws.profile": "profile:daikin",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "workbench.colorTheme": "Dracula"
+}

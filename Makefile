@@ -6,3 +6,8 @@ tmux:
 neovim:
 	ln -rsf config/nvim/init.vim ~/.config/nvim/init.vim
 	ln -rsf config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+hyper:
+	ln -rsf .hyper.js ~/.hyper.js
+vscode:
+	ln -rsf config/Code/User/settings.json ~/.config/Code/User/settings.json
+
