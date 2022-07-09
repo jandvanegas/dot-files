@@ -46,9 +46,10 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
   -- Colorschemes
-  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/onedarker.nvim"
--- cmp plugins
+
+  -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
@@ -64,7 +65,8 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-    -- Telescope
+
+  -- Telescope
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
 
@@ -75,6 +77,9 @@ return packer.startup(function(use)
   }
   use "nvim-treesitter/playground"
   use "p00f/nvim-ts-rainbow"
+
+  -- Slime
+  use "jpalardy/vim-slime"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -6,6 +6,7 @@ tmux:
 neovim:
 	# ln -rsf config/nvim/init.vim ~/.config/nvim/init.vim
 	# ln -rsf config/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
+	mkdir -p ~/.config/nvim/lua
 	ln -rsf config/nvim/init.lua ~/.config/nvim/init.lua
 	ln -rs config/nvim/lua/user ~/.config/nvim/lua
 hyper:
