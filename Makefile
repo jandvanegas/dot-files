@@ -10,4 +10,5 @@ hyper:
 	ln -rsf .hyper.js ~/.hyper.js
 vscode:
 	ln -rsf config/Code/User/settings.json ~/.config/Code/User/settings.json
-
+alacritty:
+	ln -rsf .alacritty.yml ~/.alacritty.yml

@@ -4,12 +4,11 @@
 // See https://hyper.is#cfg for all currently supported options.
 module.exports = {
     config: {
-         modifierKeys: { altIsMeta: true },
         // choose either `'stable'` for receiving highly polished,
         // or `'canary'` for less polished but more frequent updates
         updateChannel: 'stable',
         // default font size in pixels for all tabs
-        fontSize: 12,
+        fontSize: 14,
         // font family with optional fallbacks
         fontFamily: '"MesloLGL Nerd Font", Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
         // default font weight: 'normal' or 'bold'
@@ -163,7 +162,7 @@ module.exports = {
         `hypercwd`,
         `hyper-statusline`,
         `hyper-alt-click`,
-        `hyperterm-safepaste`,
+        //`hyperterm-safepaste`,
         `hyper-search`,
         `hypergoogle`,
         `hyper-tab-icons`,
