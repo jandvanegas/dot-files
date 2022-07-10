@@ -15,3 +15,5 @@ vscode:
 	ln -rsf config/Code/User/settings.json ~/.config/Code/User/settings.json
 alacritty:
 	ln -rsf .alacritty.yml ~/.alacritty.yml
+zsh-mac:
+	ln -rsf .zshrc-mac ~/.zshrc
