@@ -8,12 +8,13 @@ local db = require('dashboard')
                   -- action type can be string or function or nil.
 db.custom_header = {
 '',
-' _            _    _            _          _  _',
+' _            _    _            _          _  _  ',
 '| |      ___ | |_ ( ) ___    __| |  ___   (_)| |_',
-'| |     / _ \| __||  // __|  // _` | / _ \  | || __|',
-'| |___ |  __/| |_    \__ \ | (_| || (_) | | || |_',
-'|_____| \___| \__|   |___/  \__,_| \___/  |_| \__|',
+'| |     / _ \\| __||/ / __|  / _` | / _ \\  | || __|',
+'| |___ |  __/| |_    \\__ \\ | (_| || (_) | | || |_',
+'|_____| \\___| \\__|   |___/  \\__,_| \\___/  |_| \\__|',
 '',
+'Juan Andres V.',
 }
 db.preview_file_height = 12
 db.preview_file_width = 80                 -- if you don't need any one of icon shortcut action ,you can ignore it.
