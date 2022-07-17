@@ -86,6 +86,16 @@ return packer.startup(function(use)
   -- Slime
   use "jpalardy/vim-slime"
 
+  -- Git
+  use "f-person/git-blame.nvim"
+  use "lewis6991/gitsigns.nvim"
+
+  -- Dashboard
+  use "glepnir/dashboard-nvim"
+
+  -- Clap
+  use "liuchengxu/vim-clap"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
