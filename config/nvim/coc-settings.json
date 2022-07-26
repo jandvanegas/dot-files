@@ -1,4 +1,6 @@
 {
 	// pyright
 	"python.pythonPath": "/home/javanegas/pseudoPython"
+  // create file with:
+  // python "$@"
 }
