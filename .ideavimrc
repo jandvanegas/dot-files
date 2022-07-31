@@ -79,6 +79,7 @@ nmap <leader>nb :action ShowNavBar<CR>
 nmap <leader>nt :NERDTree<CR>
 nmap <leader>ni <Action>(SelectIn)
 nmap <leader>nf <Action>(SelectInProjectView)
+nmap <C-h> <Action>(SelectInProjectView)
 nmap <leader>hb :action HideAllWindows<CR>
 
 ; Refactor

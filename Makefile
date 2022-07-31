@@ -18,3 +18,9 @@ alacritty:
 	ln -rsf .alacritty.yml ~/.alacritty.yml
 zsh-mac:
 	ln -rsf .zshrc-mac ~/.zshrc
+upgrade-git:
+	# https://www.linuxcapable.com/how-to-install-and-update-latest-git-on-ubuntu-20-04/
+	sudo add-apt-repository ppa:git-core/ppa -y
+	sudo apt update
+	sudo apt upgrade git
+

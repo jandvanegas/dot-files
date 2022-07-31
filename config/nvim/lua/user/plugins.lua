@@ -71,9 +71,10 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
 
-  -- Telescope
+  -- Finding
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
+  use "liuchengxu/vim-clap"
 
     -- Treesitter
   use {
@@ -83,18 +84,23 @@ return packer.startup(function(use)
   use "nvim-treesitter/playground"
   use "p00f/nvim-ts-rainbow"
 
-  -- Slime
+  -- Slime: execute code in another window
   use "jpalardy/vim-slime"
 
   -- Git
   use "f-person/git-blame.nvim"
   use "lewis6991/gitsigns.nvim"
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   -- Dashboard
   use "glepnir/dashboard-nvim"
 
-  -- Clap
-  use "liuchengxu/vim-clap"
+  -- Debug
+  use "folke/trouble.nvim"
+
+  -- Refactoring
+--  use { "ThePrimeagen/refactoring.nvim", requires = { {"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"} } }
+  use { "python-rope/ropevim", run = "pip install ropevim", disable = false } 
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

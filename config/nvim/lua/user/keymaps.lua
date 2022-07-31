@@ -66,11 +66,37 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>sf", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 keymap("n", "<leader>fa", "<cmd>Telescope live_grep<cr>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>nb", ":NvimTreeToggle<cr>", opts)
+keymap("n", "<leader>nf", ":NvimTreeFindFile<cr>", opts)
 
 -- git blame 
 keymap("n", "<leader>vb", "<cmd>GitBlameToggle<cr>", opts)
+
+-- code
+keymap("n", "<leader>cf", ":w <cr> | :! ~/customenvs/black/bin/black % <cr> | :e <cr>", opts)
+
+-- trouble
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
+
+-- refactoring
+keymap("v", "<leader>rr", ":lua require('refactoring').select_refactor()<CR>", opts)
+-- Remaps for the refactoring operations currently offered by the plugin
+keymap("v", "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], opts)
+keymap("v", "<leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], opts)
+keymap("v", "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], opts)
+keymap("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], opts)
+-- Extract block doesn't need visual mode
+keymap("n", "<leader>rb", [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]], opts)
+keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]], opts)
+-- Inline variable can also pick up the identifier currently under the cursor without visual mode
+vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], opts)
+

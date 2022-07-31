@@ -40,7 +40,7 @@ nvim_tree.setup {
     },
   },
   update_focused_file = {
-    enable = true,
+    enable = false,
     update_cwd = true,
     ignore_list = {},
   },
@@ -82,8 +82,9 @@ nvim_tree.setup {
     }
   },
   view = {
-    width = 30,
-    height = 30,
+    adaptive_size = true,
+    -- width = 30,
+    -- height = 30,
     hide_root_folder = false,
     side = "left",
     mappings = {
@@ -96,6 +97,7 @@ nvim_tree.setup {
     },
     number = false,
     relativenumber = false,
+    preserve_window_proportions = false,
   },
   actions = {
     use_system_clipboard = true,
