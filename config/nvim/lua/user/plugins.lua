@@ -100,7 +100,10 @@ return packer.startup(function(use)
 
   -- Refactoring
 --  use { "ThePrimeagen/refactoring.nvim", requires = { {"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"} } }
-  use { "python-rope/ropevim", run = "pip install ropevim", disable = false } 
+  use { "python-rope/ropevim", run = "pip install ropevim", disable = false }
+
+  -- Scala
+  use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
