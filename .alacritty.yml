@@ -15,6 +15,6 @@ font:
     family: MesloLGL Nerd Font
     style: Bold Italic
 
-  size: 14
+  size: 13
 key_bindings:
     - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }

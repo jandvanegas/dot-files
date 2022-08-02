@@ -105,6 +105,9 @@ return packer.startup(function(use)
   -- Scala
   use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
 
+  -- Files Management
+  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

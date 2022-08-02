@@ -8,7 +8,7 @@ metals_config.settings = {
   showImplicitArguments = true,
   excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
 }
-
+vim.opt_global.shortmess:remove("F")
 local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
