@@ -44,5 +44,5 @@ vim.cmd [[set iskeyword+=-]]
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- Python path
-vim.cmd [[ let g:python3_host_prog = $HOME."/customenvs/neovim/bin/python" ]]
+vim.cmd [[ let g:python3_host_prog = "./venv/bin/python" ]]
 

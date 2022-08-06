@@ -4,6 +4,7 @@
   "editor.tabSize": 2,
   "terminal.integrated.fontFamily": "MesloLGL Nerd Font",
   "vim.leader": ",",
+  "vim.localleader": "<space>",
   "vim.visualModeKeyBindingsNonRecursive": [
     { "before": [ "<Leader>", "r", "e"], "commands": [ "editor.action.rename" ] }, // Rename
     { "before": [ "<Leader>", "i", "a"], "commands": [ "editor.action.refactor" ] }, // Introduce action group
