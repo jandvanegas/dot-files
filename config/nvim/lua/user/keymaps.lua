@@ -106,11 +106,16 @@ keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').refactor('Extract 
 -- Inline variable can also pick up the identifier currently under the cursor without visual mode
 vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], opts)
 
+-- JUpyter
+-- Ascending
+keymap("n", "<leader><leader>x"  , ":call jupyter_ascending#execute()<CR>", opts)
+keymap("n", "<leader><leader>X"  , ":call jupyter_ascending#execute_all()<CR>", opts)
+--
 -- Jupyter with Magma
---keymap("n", "<localleader>r"  , ":MagmaEvaluateOperator<CR>", opts)
---keymap("n", "<localleader>rr" , ":MagmaEvaluateLine<CR>", opts)
---keymap("n", "<localleader>rc" , ":MagmaReevaluateCell<CR>", opts)
---keymap("n", "<localleader>rd" , ":MagmaDelete<CR>", opts)
---keymap("n", "<localleader>ro" , ":MagmaShowOutput<CR>", opts)
---keymap("x", "<localleader>r " , "<C-u>MagmaEvaluateVisual :MagmaShowOutput<CR>", opts)
+keymap("n", "<localleader>r"  , ":MagmaEvaluateOperator<CR>", opts)
+keymap("n", "<localleader>rr" , ":MagmaEvaluateLine<CR>", opts)
+keymap("n", "<localleader>rc" , ":MagmaReevaluateCell<CR>", opts)
+keymap("n", "<localleader>rd" , ":MagmaDelete<CR>", opts)
+keymap("n", "<localleader>ro" , ":MagmaShowOutput<CR>", opts)
+keymap("x", "<localleader>r " , "<C-u>MagmaEvaluateVisual :MagmaShowOutput<CR>", opts)
 

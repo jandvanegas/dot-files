@@ -75,6 +75,7 @@ return packer.startup(function(use)
   -- Finding
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
+  use "nvim-telescope/telescope-file-browser.nvim"
   use "liuchengxu/vim-clap"
 
   -- Treesitter
@@ -120,7 +121,12 @@ return packer.startup(function(use)
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
   -- Jupyter
-  -- use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins' }
+  -- To install magma verify magma plugin is loaded. Running nvim with a python env that contains 
+  -- all dependencies. If you didn't, reload with the correct env and run manually :UpdateRemotePlugins
+  -- until it messages out that magma plugin was loaded
+  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins', requires = {"rcarriga/nvim-notify"}} --
+  use 'goerz/jupytext.vim'
+  use "untitled-ai/jupyter_ascending.vim"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
