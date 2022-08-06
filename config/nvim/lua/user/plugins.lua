@@ -70,13 +70,14 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "dense-analysis/ale"
 
   -- Finding
   use "nvim-telescope/telescope.nvim"
   use 'nvim-telescope/telescope-media-files.nvim'
   use "liuchengxu/vim-clap"
 
-    -- Treesitter
+  -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     run = ":TSUpdate",
@@ -99,15 +100,19 @@ return packer.startup(function(use)
   use "folke/trouble.nvim"
 
   -- Refactoring
---  use { "ThePrimeagen/refactoring.nvim", requires = { {"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"} } }
+  --  use { "ThePrimeagen/refactoring.nvim", requires = { {"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"} } }
   use { "python-rope/ropevim", run = "pip install ropevim", disable = false }
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- Scala
-  use({'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" }})
+  use({ 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } })
 
   -- Files Management
-  use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'}
+  -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'} -- disabled for now
   use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use "moll/vim-bbye" -- Provides Bdelete, so it does not closes the current window
+  -- Neovim developing utilities'
+  use 'tpope/vim-scriptease'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

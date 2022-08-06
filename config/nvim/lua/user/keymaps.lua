@@ -36,10 +36,12 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
+keymap("n", "<leader>w", ":w <CR>| :Bdelete<CR>", opts)
+keymap("n", "<leader>w", ":w <CR>| :Bdelete<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -67,8 +69,10 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
-keymap("n", "<leader>fa", "<cmd>Telescope live_grep<cr>", opts)
-keymap("n", "<leader>fr", ":lua require'telescope.builtin'.oldfiles()<cr>", opts)
+keymap("n", "<leader>fa", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
+keymap("n", "<leader>fs", "<cmd>lua require'telescope.builtin'.grep_string()<cr>", opts)
+keymap("n", "<leader>fo", ":lua require'telescope.builtin'.oldfiles()<cr>", opts)
+keymap("n", "<leader>fr", "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>nb", ":NvimTreeToggle<cr>", opts)
@@ -78,7 +82,8 @@ keymap("n", "<leader>nf", ":NvimTreeFindFile<cr>", opts)
 keymap("n", "<leader>vb", "<cmd>GitBlameToggle<cr>", opts)
 
 -- code
-keymap("n", "<leader>cf", ":w <cr> | :! ~/customenvs/black/bin/black % <cr> | :e <cr>", opts)
+-- keymap("n", "<leader>cf", ":w <cr> | :! ~/customenvs/black/bin/black % <cr> | :e <cr>", opts)
+keymap("n", "<leader>cf", ":Format<cr>", opts)
 
 -- trouble
 keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)

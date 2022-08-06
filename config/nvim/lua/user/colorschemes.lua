@@ -1,7 +1,12 @@
-local colorscheme = "onedarker"
+local colorscheme = "onenord"
 
 local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not ok then
   vim.notify("colorscheme " .. colorscheme .. " not found! ")
   return
 end
+vim.g.transparent_background = true        -- transparent background(Default: false)
+vim.g.italic_comments = true               -- italic comments(Default: true)
+vim.g.italic_keywords = true               -- italic keywords(Default: true)
+vim.g.italic_functions = false              -- italic functions(Default: false)
+vim.g.italic_variables = false              -- italic variables(Default: false)
