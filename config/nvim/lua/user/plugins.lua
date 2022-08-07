@@ -118,14 +118,16 @@ return packer.startup(function(use)
 
   -- Markdown
   -- This needs node and yarn installed
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
   -- Jupyter
-  -- To install magma verify magma plugin is loaded. Running nvim with a python env that contains 
+  -- To install magma verify magma plugin is loaded. Running nvim with a python env that contains
   -- all dependencies. If you didn't, reload with the correct env and run manually :UpdateRemotePlugins
   -- until it messages out that magma plugin was loaded
-  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins', requires = {"rcarriga/nvim-notify"}} --
+  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins', requires = { "rcarriga/nvim-notify" } } --
   use 'goerz/jupytext.vim'
+  use { "glacambre/firenvim", run = function() vim.fn["firenvim#install"](0) end, }
   use "untitled-ai/jupyter_ascending.vim"
 
   -- Automatically set up your configuration after cloning packer.nvim
