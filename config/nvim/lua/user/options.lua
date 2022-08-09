@@ -46,3 +46,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 -- Python path
 vim.cmd [[ let g:python3_host_prog = "./venv/bin/python" ]]
 
+-- FixCursorHold plugin
+vim.cmd [[
+  let g:cursorhold_updatetime = 100
+]]

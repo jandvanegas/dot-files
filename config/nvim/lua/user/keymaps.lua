@@ -68,17 +68,21 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
-keymap("n", "<leader>ff", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>ff",
+  "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+  opts)
 keymap("n", "<leader>fa", "<cmd>lua require'telescope.builtin'.live_grep()<cr>", opts)
 keymap("n", "<leader>fs", "<cmd>lua require'telescope.builtin'.grep_string()<cr>", opts)
-keymap("n", "<leader>fo", ":lua require'telescope.builtin'.oldfiles()<cr>", opts)
-keymap("n", "<leader>fr", "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>", opts)
+keymap("n", "<leader>fo", ":lua require'telescope.builtin'.oldfiles({ only_cwd = true})<cr>", opts)
+keymap("n", "<leader>fr",
+  "<cmd>lua require'telescope.builtin'.buffers(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",
+  opts)
 
 -- Nvimtree
 keymap("n", "<leader>nb", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>nf", ":NvimTreeFindFile<cr>", opts)
 
--- git blame 
+-- git blame
 keymap("n", "<leader>vb", "<cmd>GitBlameToggle<cr>", opts)
 
 -- code
@@ -108,14 +112,25 @@ vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').re
 
 -- JUpyter
 -- Ascending
-keymap("n", "<leader><leader>x"  , ":call jupyter_ascending#execute()<CR>", opts)
-keymap("n", "<leader><leader>X"  , ":call jupyter_ascending#execute_all()<CR>", opts)
+keymap("n", "<leader><leader>x", ":call jupyter_ascending#execute()<CR>", opts)
+keymap("n", "<leader><leader>X", ":call jupyter_ascending#execute_all()<CR>", opts)
 --
 -- Jupyter with Magma
-keymap("n", "<localleader>r"  , ":MagmaEvaluateOperator<CR>", opts)
-keymap("n", "<localleader>rr" , ":MagmaEvaluateLine<CR>", opts)
-keymap("n", "<localleader>rc" , ":MagmaReevaluateCell<CR>", opts)
-keymap("n", "<localleader>rd" , ":MagmaDelete<CR>", opts)
-keymap("n", "<localleader>ro" , ":MagmaShowOutput<CR>", opts)
-keymap("x", "<localleader>r " , "<C-u>MagmaEvaluateVisual :MagmaShowOutput<CR>", opts)
+keymap("n", "<localleader>r", ":MagmaEvaluateOperator<CR>", opts)
+keymap("n", "<localleader>rr", ":MagmaEvaluateLine<CR>", opts)
+keymap("n", "<localleader>rc", ":MagmaReevaluateCell<CR>", opts)
+keymap("n", "<localleader>rd", ":MagmaDelete<CR>", opts)
+keymap("n", "<localleader>ro", ":MagmaShowOutput<CR>", opts)
+keymap("x", "<localleader>r ", "<C-u>MagmaEvaluateVisual :MagmaShowOutput<CR>", opts)
 
+-- Testing 
+keymap("n", "<leader>ta", "<cmd>lua require('neotest').run.attach()<cr>", opts)
+keymap("n", "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", opts)
+keymap("n", "<leader>tF", "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>", opts)
+keymap("n", "<leader>tl", "<cmd>lua require('neotest').run.run_last()<cr>", opts)
+keymap("n", "<leader>tL", "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>", opts)
+keymap("n", "<leader>tn", "<cmd>lua require('neotest').run.run()<cr>", opts)
+keymap("n", "<leader>tN", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", opts)
+keymap("n", "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<cr>", opts)
+keymap("n", "<leader>tS", "<cmd>lua require('neotest').run.stop()<cr>", opts)
+keymap("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<cr>", opts)

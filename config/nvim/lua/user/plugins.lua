@@ -116,6 +116,38 @@ return packer.startup(function(use)
   -- Neovim developing utilities'
   use 'tpope/vim-scriptease'
 
+  -- Testing
+
+  use {
+    "nvim-neotest/neotest",
+    opt = true,
+    wants = {
+      "plenary.nvim",
+      "nvim-treesitter",
+      "FixCursorHold.nvim",
+      "neotest-python",
+      "neotest-plenary",
+      "neotest-go",
+      "neotest-jest",
+      "neotest-vim-test",
+    },
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "nvim-neotest/neotest-python",
+      "nvim-neotest/neotest-plenary",
+      "nvim-neotest/neotest-go",
+      "haydenmeade/neotest-jest",
+      "nvim-neotest/neotest-vim-test",
+      "vim-test/vim-test",
+    },
+    module = { "neotest" },
+    config = function()
+      require("user.config.neotest").setup()
+    end,
+  }
+
   -- Markdown
   -- This needs node and yarn installed
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",

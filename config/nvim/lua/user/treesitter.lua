@@ -3,8 +3,8 @@ if not status_ok then
 	return
 end
 configs.setup {
-  ensure_installed = {"python", "scala", "yaml"},
-  sync_install = false, 
+  ensure_installed = {"python", "scala", "yaml", "lua"},
+  sync_install = true,
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
     enable = true, -- false will disable the whole extension

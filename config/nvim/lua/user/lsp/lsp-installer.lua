@@ -35,3 +35,5 @@ local marksman_opts = require("user.lsp.settings.marksman")
 lspconfig.marksman.setup(
   vim.tbl_deep_extend("force", marksman_opts, opts)
 )
+
+lspconfig.rome.setup{}
