@@ -134,3 +134,7 @@ keymap("n", "<leader>tN", "<cmd>lua require('neotest').run.run({strategy = 'dap'
 keymap("n", "<leader>to", "<cmd>lua require('neotest').output.open({ enter = true })<cr>", opts)
 keymap("n", "<leader>tS", "<cmd>lua require('neotest').run.stop()<cr>", opts)
 keymap("n", "<leader>ts", "<cmd>lua require('neotest').summary.toggle()<cr>", opts)
+-- lsp saga
+vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
+vim.keymap.set("v", "<leader>ca", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
+vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })

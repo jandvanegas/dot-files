@@ -1,9 +1,9 @@
 local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 if not status_ok then
-	return
+  return
 end
 
-lsp_installer.setup{}
+lsp_installer.setup {}
 
 local lspconfig = require("lspconfig")
 local opts = {
@@ -36,4 +36,17 @@ lspconfig.marksman.setup(
   vim.tbl_deep_extend("force", marksman_opts, opts)
 )
 
-lspconfig.rome.setup{}
+-- lspconfig.rome.setup{}
+lspconfig.eslint.setup {
+  on_attach = opts.on_attach,
+  capabilities = opts.capabilities,
+}
+lspconfig.quick_lint_js.setup {
+  on_attach = opts.on_attach,
+  capabilities = opts.capabilities,
+}
+lspconfig.tsserver.setup {
+  on_attach = opts.on_attach,
+  capabilities = opts.capabilities,
+}
+-- lspconfig.denols.setup{}

@@ -44,24 +44,43 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim" -- Have packer manage itself
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  -- cmp plugins
+  -- buffer completions
+  use { "hrsh7th/nvim-cmp",
+    requires = {
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path", -- path completions
+      "hrsh7th/cmp-cmdline", -- cmdline completions
+      "saadparwaiz1/cmp_luasnip", -- snippet completions
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "windwp/nvim-autopairs",
+    },
+    config = function()
+      require("user.config.cmp").setup()
+    end
+  } -- The completion plugin
+  use { "windwp/nvim-autopairs",
+    config = function()
+      require("user.config.autopairs").setup()
+    end
+  } -- Autopairs, integrates with both cmp and treesitter
 
   -- Nvim Tree
-  use 'kyazdani42/nvim-web-devicons'
-  use 'kyazdani42/nvim-tree.lua'
+  use { 'kyazdani42/nvim-tree.lua',
+    requires = {
+      "kyazdani42/nvim-web-devicons"
+    },
+    config = function()
+      require("user.config.nvim-tree").setup()
+    end
+  }
 
   -- Colorschemes
   use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
   use "lunarvim/onedarker.nvim"
 
-  -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -70,47 +89,122 @@ return packer.startup(function(use)
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  use "dense-analysis/ale"
+  use { "dense-analysis/ale",
+    config = function()
+      require("user.config.ale").setup()
+    end
+  }
+  use {
+    "tami5/lspsaga.nvim",
+    config = function()
+      require("lspsaga").setup {}
+    end,
+  }
+  use { "williamboman/mason.nvim",
+    config = function()
+      require("mason").setup {}
+    end
+  }
 
   -- Finding
-  use "nvim-telescope/telescope.nvim"
-  use 'nvim-telescope/telescope-media-files.nvim'
-  use "nvim-telescope/telescope-file-browser.nvim"
+  use { "nvim-telescope/telescope.nvim",
+    requires = {
+      'nvim-telescope/telescope-media-files.nvim',
+      "nvim-telescope/telescope-file-browser.nvim",
+    },
+    config = function()
+      require("user.config.telescope").setup()
+    end
+  }
   use "liuchengxu/vim-clap"
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    requires = {
+      "p00f/nvim-ts-rainbow",
+    },
+    config = function()
+      require("user.config.treesitter").setup()
+    end,
+    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end, -- It avoids failing on TSUpdate
   }
-  use "nvim-treesitter/playground"
-  use "p00f/nvim-ts-rainbow"
+  use { "nvim-treesitter/playground",
+    requires = "nvim-treesitter/nvim-treesitter",
+  }
 
   -- Slime: execute code in another window
-  use "jpalardy/vim-slime"
+  use { "jpalardy/vim-slime",
+    config = function()
+      vim.g.slime_target = "tmux"
+      vim.g.slime_cell_delimiter = "#%%"
+    end
+  }
 
   -- Git
-  use "f-person/git-blame.nvim"
-  use "lewis6991/gitsigns.nvim"
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-
+  use { "f-person/git-blame.nvim",
+    config = function()
+      vim.g.gitblame_message_template = '<author> • <date> • <summary>'
+      vim.g.gitblame_enabled = 0
+    end
+  }
+  use { "lewis6991/gitsigns.nvim",
+    config = function()
+      require("user.config.gitsigns").setup()
+    end
+  }
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim',
+    config = function()
+      require("user.config.diffview").setup()
+    end
+  }
   -- Dashboard
-  use "glepnir/dashboard-nvim"
+  use { "glepnir/dashboard-nvim",
+    config = function()
+      require("user.config.dashboard").setup()
+    end
+  }
 
   -- Debug
-  use "folke/trouble.nvim"
+  use { "folke/trouble.nvim",
+    config = function()
+      require('user.config.trouble').setup()
+    end
+  }
 
   -- Refactoring
-  --  use { "ThePrimeagen/refactoring.nvim", requires = { {"nvim-lua/plenary.nvim"}, {"nvim-treesitter/nvim-treesitter"} } }
+  use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("user.config.refactoring").setup()
+    end,
+  }
   use { "python-rope/ropevim", disable = false }
   use "jose-elias-alvarez/null-ls.nvim"
 
   -- Scala
-  use({ 'scalameta/nvim-metals', requires = { "nvim-lua/plenary.nvim" } })
+  use({ 'scalameta/nvim-metals',
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("user.config.metals").setup()
+    end
+  })
 
   -- Files Management
-  -- use {'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons'} -- disabled for now
-  use { 'nvim-lualine/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
+  use { 'akinsho/bufferline.nvim',
+    tag = "v2.*",
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('user.config.bufferline').setup()
+    end,
+  }
+  use { 'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('user.config.lualine').setup()
+    end,
+  }
   use "moll/vim-bbye" -- Provides Bdelete, so it does not closes the current window
 
   -- Neovim developing utilities'
@@ -161,7 +255,27 @@ return packer.startup(function(use)
   use 'goerz/jupytext.vim'
   use { "glacambre/firenvim", run = function() vim.fn["firenvim#install"](0) end, }
   use "untitled-ai/jupyter_ascending.vim"
-
+  -- Debugging
+  use {
+    "mfussenegger/nvim-dap",
+    opt = true,
+    requires = {
+      "theHamsta/nvim-dap-virtual-text",
+      "rcarriga/nvim-dap-ui",
+      "mfussenegger/nvim-dap-python",
+    },
+    config = function()
+      require("user.config.dap").setup()
+    end,
+  }
+  -- Folding
+  use {
+    "kevinhwang91/nvim-ufo",
+    requires = "kevinhwang91/promise-async",
+    config = function()
+      require("user.config.ufo").setup()
+    end,
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

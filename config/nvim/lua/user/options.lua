@@ -40,13 +40,20 @@ vim.cmd "set whichwrap+=<,>,[,]"            -- <> are the cursor keys in normal 
 vim.cmd [[set iskeyword+=-]]
 -- vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
--- Folding with tree sitter vim.opt.foldmethod = "expr"
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- Folding
+-- Folding with treesitter
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- Folding with ufo
+vim.opt.foldcolumn = '1'
+vim.opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+
 -- Python path
 vim.cmd [[ let g:python3_host_prog = "./venv/bin/python" ]]
 
 -- FixCursorHold plugin
-vim.cmd [[
-  let g:cursorhold_updatetime = 100
-]]
+--vim.cmd [[
+--  let g:cursorhold_updatetime = 100
+--]]
