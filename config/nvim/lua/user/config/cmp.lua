@@ -94,13 +94,17 @@ function M.setup()
       fields = { "kind", "abbr", "menu" },
       format = function(entry, vim_item)
         -- Kind icons
-        vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-        -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+        -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind]) -- This does not show the kind
+        vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
         vim_item.menu = ({
           luasnip = "[Snippet]",
           buffer = "[Buffer]",
           path = "[Path]",
+          nvim_lsp = "[lsp]",
         })[entry.source.name]
+        if vim_item.menu == nil then
+          vim_item.menu = entry.source.name
+        end
         return vim_item
       end,
     },

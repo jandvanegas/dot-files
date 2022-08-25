@@ -3,12 +3,16 @@ function M.setup()
   local telescope = require("telescope")
   telescope.load_extension('media_files')
   telescope.load_extension("file_browser")
+  telescope.load_extension('dap')
 
   local actions = require "telescope.actions"
 
   telescope.setup {
     defaults = {
-
+      history = {
+        path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+        limit = 100,
+      },
       prompt_prefix = " ",
       selection_caret = " ",
       path_display = { "smart" },
@@ -114,6 +118,7 @@ function M.setup()
       -- please take a look at the readme of the extension you want to configure
     },
   }
+  telescope.load_extension('smart_history')
 end
 
 return M

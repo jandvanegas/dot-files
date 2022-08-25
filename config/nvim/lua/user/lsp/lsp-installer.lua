@@ -36,17 +36,20 @@ lspconfig.marksman.setup(
   vim.tbl_deep_extend("force", marksman_opts, opts)
 )
 
--- lspconfig.rome.setup{}
+local eslint_opts = require("user.lsp.settings.eslint")
 lspconfig.eslint.setup {
-  on_attach = opts.on_attach,
-  capabilities = opts.capabilities,
+  vim.tbl_deep_extend("force", eslint_opts, opts)
 }
-lspconfig.quick_lint_js.setup {
-  on_attach = opts.on_attach,
-  capabilities = opts.capabilities,
-}
+--lspconfig.quick_lint_js.setup {
+--  on_attach = opts.on_attach,
+--  capabilities = opts.capabilities,
+--}
 lspconfig.tsserver.setup {
   on_attach = opts.on_attach,
   capabilities = opts.capabilities,
 }
 -- lspconfig.denols.setup{}
+lspconfig.cssmodules_ls.setup {
+  on_attach = opts.on_attach,
+  capabilities = opts.capabilities,
+}

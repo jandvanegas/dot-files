@@ -34,6 +34,7 @@ local function configure_exts()
 
   local dap, dapui = require "dap", require "dapui"
   dapui.setup {} -- use default
+  -- Opens automatically dap-ui
   dap.listeners.after.event_initialized["dapui_config"] = function()
     dapui.open()
   end
@@ -46,15 +47,13 @@ local function configure_exts()
 end
 
 local function configure_debuggers()
-  require("config.dap.lua").setup()
-  require("config.dap.python").setup()
+  require("user.config.dap.python").setup()
 end
 
 function M.setup()
-  configure() -- Configuration
-  configure_exts() -- Extensions
-  configure_debuggers() -- Debugger
-  require("config.dap.keymaps").setup() -- Keymaps
+  configure()
+  configure_exts()
+  configure_debuggers()
 end
 
 return M

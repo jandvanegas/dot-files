@@ -19,6 +19,7 @@ let g:ale_fixers = {
 \   'css': ['prettier'],
 \}
 let g:ale_linters_explicit = 1
+let g:ale_fixers_explicit = 1
 ]] )
 
 end

@@ -61,6 +61,9 @@ return packer.startup(function(use)
       require("user.config.cmp").setup()
     end
   } -- The completion plugin
+
+  use { "github/copilot.vim" }
+
   use { "windwp/nvim-autopairs",
     config = function()
       require("user.config.autopairs").setup()
@@ -111,8 +114,12 @@ return packer.startup(function(use)
     requires = {
       'nvim-telescope/telescope-media-files.nvim',
       "nvim-telescope/telescope-file-browser.nvim",
-    },
+      "nvim-telescope/telescope-dap.nvim",
+      "nvim-telescope/telescope-smart-history.nvim",
+      "kkharji/sqlite.lua", -- required for telescope-smart-history to work and also sudo apt-get install sqlite3 libsqlite3-dev
+     },
     config = function()
+      -- vim.g.sqlite_clib_path = "/usr/local/bin/sqlite3"
       require("user.config.telescope").setup()
     end
   }
@@ -153,11 +160,13 @@ return packer.startup(function(use)
       require("user.config.gitsigns").setup()
     end
   }
-  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim',
+  use { 'sindrets/diffview.nvim',
+    requires = 'nvim-lua/plenary.nvim',
     config = function()
       require("user.config.diffview").setup()
     end
   }
+  use { 'tpope/vim-fugitive' }
   -- Dashboard
   use { "glepnir/dashboard-nvim",
     config = function()
@@ -175,7 +184,11 @@ return packer.startup(function(use)
   -- Refactoring
   use {
     "ThePrimeagen/refactoring.nvim",
-    requires = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter", "nvim-telescope/telescope.nvim" },
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-telescope/telescope.nvim"
+    },
     config = function()
       require("user.config.refactoring").setup()
     end,
@@ -185,7 +198,9 @@ return packer.startup(function(use)
 
   -- Scala
   use({ 'scalameta/nvim-metals',
-    requires = { "nvim-lua/plenary.nvim" },
+    requires = {
+      "nvim-lua/plenary.nvim"
+    },
     config = function()
       require("user.config.metals").setup()
     end
@@ -258,7 +273,7 @@ return packer.startup(function(use)
   -- Debugging
   use {
     "mfussenegger/nvim-dap",
-    opt = true,
+    opt = false,
     requires = {
       "theHamsta/nvim-dap-virtual-text",
       "rcarriga/nvim-dap-ui",
@@ -271,10 +286,37 @@ return packer.startup(function(use)
   -- Folding
   use {
     "kevinhwang91/nvim-ufo",
-    requires = "kevinhwang91/promise-async",
+    requires = { "kevinhwang91/promise-async",
+      "nvim-treesitter/nvim-treesitter",
+    },
     config = function()
       require("user.config.ufo").setup()
     end,
+  }
+  -- Comment
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+  -- Iluminate current word usages
+  use({
+    "RRethy/vim-illuminate",
+    event = "CursorHold",
+    module = "illuminate",
+    config = function()
+      vim.g.Illuminate_delay = 1000
+    end,
+  })
+  -- Quicker movements
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
   }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

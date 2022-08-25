@@ -1,7 +1,10 @@
 source ~/.vimrc
 let mapleader = ","
-set easymotion ;install plugin and Acejump
 set sneak ; install with plugin
+; Plugins 
+Plug 'easymotion/vim-easymotion'
+Plug 'preservim/nerdtree`
+Plug 'tpope/vim-commentary'
 
 ; Actions on Visual Mode an Normal Mode
 nmap <leader>fh :action Find<CR>
@@ -49,11 +52,11 @@ nmap <leader>spi :action ParameterInfo<CR>
 nmap <leader>cf :action ReformatCode<CR>
 
 ; Search
+nmap <leader>ff :action GotoFile<CR> ; find file
+nmap <leader>fo :action RecentFiles<CR> ; find old files
 nmap <leader>sa :action GotoAction<CR>
 nmap <leader>sc :action GotoClass<CR>
-nmap <leader>sf :action GotoFile<CR>
 nmap <leader>sl :action RecentLocations<CR>
-nmap <leader>sr :action RecentFiles<CR>
 nmap <leader>ss :action GotoSymbol<CR>
 
 
@@ -75,8 +78,8 @@ nmap <leader>h  :action QuickJavaDoc<CR>
 nmap <Leader>t :action ActivateTerminalToolWindow<CR>
 
 ; Navigation
-nmap <leader>nb :action ShowNavBar<CR>
-nmap <leader>nt :NERDTree<CR>
+nmap <leader>nn :action ShowNavBar<CR>
+nmap <leader>nb :NERDTree<CR>
 nmap <leader>ni <Action>(SelectIn)
 nmap <leader>nf <Action>(SelectInProjectView)
 nmap <C-h> <Action>(SelectInProjectView)
@@ -104,17 +107,18 @@ nmap <leader>db :action ToggleLineBreakpoint<CR>
 nmap <leader>dh <Action>(RunClass)
 
 ; Version
-nmap <leader>vb <Action>(Annotate)
+nmap <leader>vb <Action>(Annotate) ; version blame
 ; Appereance
 nmap <leader>ei <Action>(EditorIncreaseFontSize)
 nmap <leader>ed <Action>(EditorDecreaseFontSize)
 
 
-nmap + :action ExpandRegionRecursively<CR>
-nmap - :action CollapseRegionRecursively<CR>
 nmap { :action GotoPreviousError<CR>
 nmap } :action GotoNextError<CR>
-nmap [[ <Action>(Back)
-nmap ]] <Action>(Forward)
-nmap = :action ExpandAllToLevel1<CR>
+
+; nmap + :action ExpandRegionRecursively<CR> ; Use native zO instead
+; nmap - :action CollapseRegionRecursively<CR> ; Use native zC instead
+; nmap [[ <Action>(Back) ; Use ctrl o instead
+; nmap ]] <Action>(Forward) ; Use ctrl i instead
+; nmap = :action ExpandAllToLevel1<CR> ; Use native zR instead
 

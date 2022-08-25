@@ -89,5 +89,7 @@
   "editor.suggest.showMethods": true,
   "editor.suggest.preview": true,
   "editor.acceptSuggestionOnEnter": "on",
-  "editor.snippetSuggestions": "top"
+  "editor.snippetSuggestions": "top",
+  "vim.neovimPath": "/snap/bin/nvim",
+  "vim.enableNeovim": true
 }

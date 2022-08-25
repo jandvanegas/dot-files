@@ -12,9 +12,9 @@ then
 	tmux new-session -s $SESSION_NAME -n editor -d -c $DIR
 	# tmux split-window -h -t $SESSION_NAME -c $DIR
 	# tmux resize-pane -L 50
-	tmux select-window -t $SESSION_NAME:1
-	tmux split-window -v -p 10 -t $SESSION_NAME
-# tmux send-keys -t $SESSION_NAME:0.1 'vim -c "FloatermNew vifm . ."' C-m
+	tmux select-window -t $SESSION_NAME:0
+	# tmux split-window -v -p 10 -t $SESSION_NAME
+  tmux send-keys -t $SESSION_NAME:0.0 'nvim' C-m
 
 # create console window
 #	tmux new-window -n console -t $SESSION_NAME -c $DIR
