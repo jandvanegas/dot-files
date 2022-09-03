@@ -116,8 +116,9 @@ return packer.startup(function(use)
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-dap.nvim",
       "nvim-telescope/telescope-smart-history.nvim",
+      "nvim-telescope/telescope-project.nvim",
       "kkharji/sqlite.lua", -- required for telescope-smart-history to work and also sudo apt-get install sqlite3 libsqlite3-dev
-     },
+    },
     config = function()
       -- vim.g.sqlite_clib_path = "/usr/local/bin/sqlite3"
       require("user.config.telescope").setup()
@@ -208,6 +209,7 @@ return packer.startup(function(use)
 
   -- Files Management
   use { 'akinsho/bufferline.nvim',
+    disable = false,
     tag = "v2.*",
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
@@ -266,7 +268,12 @@ return packer.startup(function(use)
   -- To install magma verify magma plugin is loaded. Running nvim with a python env that contains
   -- all dependencies. If you didn't, reload with the correct env and run manually :UpdateRemotePlugins
   -- until it messages out that magma plugin was loaded
-  use { 'dccsillag/magma-nvim', run = ':UpdateRemotePlugins', requires = { "rcarriga/nvim-notify" } } --
+  use { 'dccsillag/magma-nvim',
+    disable = true,
+    run = ':UpdateRemotePlugins', requires = { "rcarriga/nvim-notify" }, }
+  use { 'rcarriga/nvim-notify', config = function()
+    require("user.config.nvim-notify").setup()
+  end }
   use 'goerz/jupytext.vim'
   use { "glacambre/firenvim", run = function() vim.fn["firenvim#install"](0) end, }
   use "untitled-ai/jupyter_ascending.vim"
@@ -316,6 +323,17 @@ return packer.startup(function(use)
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
       require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    end
+  }
+  -- Terminal
+  use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+    require("toggleterm").setup()
+  end }
+  -- Rest
+  use { "NTBBloodbath/rest.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require('user.config.rest').setup()
     end
   }
   -- Automatically set up your configuration after cloning packer.nvim

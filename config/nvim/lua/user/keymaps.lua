@@ -66,6 +66,7 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap("n", "<leader>tt", "<cmd>ToggleTerm<cr>", term_opts)
 
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 keymap("n", "<leader>ff",
@@ -88,7 +89,7 @@ keymap("n", "<leader>vb", "<cmd>GitBlameToggle<cr>", opts)
 
 -- code
 -- keymap("n", "<leader>cf", ":w <cr> | :! ~/customenvs/black/bin/black % <cr> | :e <cr>", opts)
-keymap("n", "<leader>cf", ":Format<cr>", opts)
+keymap("n", "<leader>cf", ":lua vim.lsp.buf.formatting()<cr>", opts)
 
 -- trouble
 keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
@@ -176,3 +177,5 @@ keymap("v", "<localleader>ds", "<cmd>lua require'dap-python'.debug_selection()<c
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+-- rest client
+vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", opts)

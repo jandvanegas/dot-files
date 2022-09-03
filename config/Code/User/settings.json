@@ -90,6 +90,6 @@
   "editor.suggest.preview": true,
   "editor.acceptSuggestionOnEnter": "on",
   "editor.snippetSuggestions": "top",
-  "vim.neovimPath": "/snap/bin/nvim",
+  "vim.neovimPath": "/usr/bin/nvim",
   "vim.enableNeovim": true
 }

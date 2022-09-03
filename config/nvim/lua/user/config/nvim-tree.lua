@@ -21,7 +21,7 @@ function M.setup()
       enable = true,
       auto_open = true,
     },
-    open_on_tab = false,
+    open_on_tab = true,
     hijack_cursor = false,
     update_cwd = true,
     diagnostics = {

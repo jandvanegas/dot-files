@@ -53,3 +53,8 @@ lspconfig.cssmodules_ls.setup {
   on_attach = opts.on_attach,
   capabilities = opts.capabilities,
 }
+lspconfig.bashls.setup {
+  on_attach = opts.on_attach,
+  capabilities = opts.capabilities,
+}
+

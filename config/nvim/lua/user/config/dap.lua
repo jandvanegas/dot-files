@@ -44,6 +44,37 @@ local function configure_exts()
   dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
   end
+
+  dap.adapters.chrome = {
+    type = "executable",
+    command = "node",
+    args = { os.getenv "HOME" .. "/dap/vscode-chrome-debug/out/src/chromeDebug.js" },
+  }
+
+  dap.configurations.javascript = {
+      {
+          type = "chrome",
+          request = "attach",
+          program = "${file}",
+          cwd = vim.fn.getcwd() .. '/src',
+          sourceMaps = true,
+          protocol = "inspector",
+          port = 9222,
+          webRoot = "${workspaceFolder}"
+      }
+  }
+  dap.configurations.javascriptreact = {
+      {
+          type = "chrome",
+          request = "attach",
+          program = "${file}",
+          cwd = vim.fn.getcwd(),
+          sourceMaps = true,
+          protocol = "inspector",
+          port = 9222,
+          webRoot = "${workspaceFolder}"
+      }
+  }
 end
 
 local function configure_debuggers()

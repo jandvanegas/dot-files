@@ -52,7 +52,7 @@ function M.setup()
   -- db.preview_file_height  -- number type
   -- db.preview_file_width   -- number type
   -- db.preview_command      -- string type
-  -- db.hide_statusline      -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
+  db.hide_statusline = false      -- boolean default is true.it will hide statusline in dashboard buffer and auto open in other buffer
   -- db.hide_tabline         -- boolean default is true.it will hide tabline in dashboard buffer and auto open in other buffer
   -- db.session_directory    -- string type the directory to store the session file
   -- db.header_pad           -- number type default is 1
