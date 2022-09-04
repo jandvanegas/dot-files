@@ -10,6 +10,7 @@ function M.setup()
   }
   vim.opt_global.shortmess:remove("F")
   local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+  metals_config.init_options.statusBarProvider = "on"
 
   vim.api.nvim_create_autocmd("FileType", {
     -- NOTE: You may or may not want java included here. You will need it if you
@@ -22,8 +23,6 @@ function M.setup()
     group = nvim_metals_group,
   })
 
-  metals_config = require("metals").bare_config()
-  metals_config.init_options.statusBarProvider = "on"
 end
 
 return M

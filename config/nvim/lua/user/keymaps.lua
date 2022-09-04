@@ -173,6 +173,8 @@ keymap("v", "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", opts)
 keymap("n", "<localleader>dm", "<cmd>lua require'dap-python'.test_method()<cr>", opts)
 keymap("n", "<localleader>dc", "<cmd>lua require'dap-python'.test_class()<cr>", opts)
 keymap("v", "<localleader>ds", "<cmd>lua require'dap-python'.debug_selection()<cr>", opts)
+-- scala metals
+keymap("n", "<localleader>sm", "<cmd>lua require'telescope'.extensions.metals.commands()<cr>", opts)
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true

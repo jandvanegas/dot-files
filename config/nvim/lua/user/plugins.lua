@@ -200,7 +200,8 @@ return packer.startup(function(use)
   -- Scala
   use({ 'scalameta/nvim-metals',
     requires = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
     },
     config = function()
       require("user.config.metals").setup()
