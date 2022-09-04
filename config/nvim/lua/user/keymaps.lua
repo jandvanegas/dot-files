@@ -176,6 +176,6 @@ keymap("v", "<localleader>ds", "<cmd>lua require'dap-python'.debug_selection()<c
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
-keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+keymap("i", "<C-l>", 'copilot#Accept("<CR>")', opts)
 -- rest client
 vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", opts)

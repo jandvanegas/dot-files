@@ -58,5 +58,4 @@ vim.cmd [[ let g:python3_host_prog = "./venv/bin/python" ]]
 --vim.cmd [[
 --  let g:cursorhold_updatetime = 100
 --]]
--- Dap
 vim.g.copilot_filetypes = { "python", "javascript" }

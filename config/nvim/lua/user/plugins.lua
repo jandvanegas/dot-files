@@ -275,7 +275,10 @@ return packer.startup(function(use)
     require("user.config.nvim-notify").setup()
   end }
   use 'goerz/jupytext.vim'
-  use { "glacambre/firenvim", run = function() vim.fn["firenvim#install"](0) end, }
+  use { "glacambre/firenvim",
+    disable = true,
+    run = function() vim.fn["firenvim#install"](0) end,
+  }
   use "untitled-ai/jupyter_ascending.vim"
   -- Debugging
   use {
