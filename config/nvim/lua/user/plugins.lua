@@ -200,6 +200,7 @@ return packer.startup(function(use)
   -- Scala
   use({ 'scalameta/nvim-metals',
     requires = {
+      "mfussenegger/nvim-dap",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim"
     },
