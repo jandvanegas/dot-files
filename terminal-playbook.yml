@@ -27,23 +27,18 @@
         update_cache: True
     - name: Make sure ssk keys are passed to guest.
       local_action: command ssh-add
-    - name: Download dot-files
-      ansible.builtin.git:
-        repo: git@github.com:jandvanegas/dot-files.git
-        dest: "{{ ansible_env.HOME }}/dot-files"
-        accept_hostkey: yes
     - name: Create lua directory
       ansible.builtin.file:
         path: "{{ ansible_env.HOME }}/.config/nvim/lua"
         state: directory
     - name: Create symlink for neovim
       ansible.builtin.file:
-        src: "{{ ansible_env.HOME }}/dot-files/config/nvim/init.lua"
+        src: "/vagrant/dot-files/config/nvim/init.lua"
         dest: "{{ ansible_env.HOME }}/.config/nvim/init.lua"
         state: link
     - name: Create symlink for neovim 2
       ansible.builtin.file:
-        src: "{{ ansible_env.HOME }}/dot-files/config/nvim/lua/user"
+        src: "/vagrant/dot-files/config/nvim/lua/user"
         dest: "{{ ansible_env.HOME }}/.config/nvim/lua/user"
         state: link
     - name: Create a directory if it does not exist
@@ -52,12 +47,12 @@
         state: directory
     - name: Create symlink for Tmux
       ansible.builtin.file:
-        src: "{{ ansible_env.HOME }}/dot-files/.tmux.conf"
+        src: "/vagrant/dot-files/.tmux.conf"
         dest: "{{ ansible_env.HOME }}/.tmux.conf"
         state: link
     - name: Create symlink for Tmux 2
       ansible.builtin.file:
-        src: "{{ ansible_env.HOME }}/dot-files/tmux_dev.sh"
+        src: "/vagrant/dot-files/tmux_dev.sh"
         dest: "{{ ansible_env.HOME }}/tmux_dev.sh"
         state: link
 
