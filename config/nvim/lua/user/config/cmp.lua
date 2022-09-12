@@ -40,7 +40,6 @@ function M.setup()
     TypeParameter = "",
   }
   -- find more here: https://www.nerdfonts.com/cheat-sheet
-  print(cmp)
   cmp.setup {
     snippet = {
       expand = function(args)

@@ -81,9 +81,9 @@ return packer.startup(function(use)
   }
 
   -- Colorschemes
-  use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
-  use "lunarvim/onedarker.nvim"
-
+  use "folke/tokyonight.nvim"
+  use "doums/darcula"
+  use "dracula/vim"
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
@@ -117,6 +117,7 @@ return packer.startup(function(use)
       "nvim-telescope/telescope-dap.nvim",
       "nvim-telescope/telescope-smart-history.nvim",
       "nvim-telescope/telescope-project.nvim",
+      "nvim-telescope/telescope-live-grep-args.nvim",
       "kkharji/sqlite.lua", -- required for telescope-smart-history to work and also sudo apt-get install sqlite3 libsqlite3-dev
     },
     config = function()

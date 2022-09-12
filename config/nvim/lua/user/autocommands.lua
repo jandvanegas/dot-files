@@ -11,8 +11,13 @@ api.nvim_create_autocmd("BufRead,BufNewFile", {
     "*template.yaml",
     "*role*.yaml",
     "*lambda*.yaml",
-    "*role*.yaml",
     "*s3*.yaml",
+    "*dynamo*.yaml",
+    "*iam*.yaml",
+    "*kinesis*.yaml",
+    "*cognito*.yaml",
+    "*parameter*.yml",
+    "*parameter*.yaml",
   },
   command = [[set filetype=yaml.cloudformation]]
 })

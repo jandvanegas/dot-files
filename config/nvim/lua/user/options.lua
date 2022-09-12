@@ -35,7 +35,7 @@ vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applicati
 vim.opt.shortmess:append "c"
 
 vim.cmd "set whichwrap+=<,>,[,]" -- <> are the arrow keys in normal and visual mode [] are the arrow kyes in insert mode
-vim.cmd [[set iskeyword+=-]] -- adds hiphen to the list of characters to be part of a word
+-- vim.cmd [[set iskeyword+=-]] -- adds hiphen to the list of characters to be part of a word
 vim.opt.autowrite = true -- saves when swithching buffers
 vim.opt.hidden = false -- does not allow to switch without saving (needed for autowrite to work)
 
