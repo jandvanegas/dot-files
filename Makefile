@@ -45,3 +45,7 @@ node:
 install-udevmon:
 	echo "Running udevmon"
 	~/custom-envs/ansible/bin/ansible-playbook ./udevmon-playbook.yml --connection local --ask-become-pass
+
+pyenv:
+	~/custom-envs/ansible/bin/ansible-playbook ./python-playbook.yml --connection local
+

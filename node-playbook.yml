@@ -1,4 +1,4 @@
-- name: Install NVM
+- name: Install NVM and node
   hosts: sandboxes
   tasks:
     - name: "nvm"
