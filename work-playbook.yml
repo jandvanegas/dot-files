@@ -1,0 +1,24 @@
+---
+- name: Install Work Tools
+  hosts: sandboxes
+  become: False
+  tasks:
+    - name: "Installation"
+      become: True
+      package:
+        name: 
+          - google-chrome-stable
+        update_cache: True
+    - name: Add flatpak
+      become: True
+      community.general.flatpak_remote:
+        name: flathub2
+        state: present
+        flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    - name: Install Slack
+      community.general.flatpak:
+        name: 
+          - com.slack.Slack
+          - org.telegram.desktop
+        state: present
+        method: system
