@@ -31,6 +31,9 @@ ansible:
 	~/custom-envs/ansible/bin/pip install ansible
 ansible-terminal: ansible
 	~/custom-envs/ansible/bin/ansible-playbook ./terminal-playbook.yml --connection local --ask-become-pass
+	@make terminal-gui
+
+terminal-gui:
 	~/custom-envs/ansible/bin/ansible-playbook ./terminal-gui-playbook.yml --connection local --ask-become-pass
 
 work:
@@ -39,3 +42,6 @@ work:
 node:
 	~/custom-envs/ansible/bin/ansible-playbook ./node-playbook.yml --connection local --ask-become-pass
 
+install-udevmon:
+	echo "Running udevmon"
+	~/custom-envs/ansible/bin/ansible-playbook ./udevmon-playbook.yml --connection local --ask-become-pass

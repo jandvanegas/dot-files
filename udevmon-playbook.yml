@@ -1,0 +1,39 @@
+- name: Install udevmon
+  hosts: sandboxes
+  become: False
+  tasks:
+    - name: "Install Packages for Fedora"
+      become: True
+      when: ansible_distribution == 'Fedora'
+      package:
+        name: 
+          - libevdev-devel 
+          - systemd-devel
+          - yaml-cpp-devel 
+          - boost-devel
+        update_cache: True
+    - name: Download interception-tools
+      ansible.builtin.git:
+        repo: https://gitlab.com/interception/linux/tools.git
+        dest: "{{ ansible_env.HOME }}/interception"
+        accept_hostkey: yes
+    - name: Build interception-tools
+      command: cmake -B build -DCMAKE_BUILD_TYPE=Release
+      args:
+        chdir: "{{ ansible_env.HOME }}/interception"
+    - name: Make interception-tools
+      command: cmake --build build
+      args:
+        chdir: "{{ ansible_env.HOME }}/interception"
+    - name: Create symlink for intercept
+      become: True
+      ansible.builtin.file:
+        src: "{{ ansible_env.HOME }}/interception/build/intercept"
+        dest: "/usr/bin/intercept"
+        state: link
+    - name: Create symlink for uinput
+      become: True
+      ansible.builtin.file:
+        src: "{{ ansible_env.HOME }}/interception/build/uinput"
+        dest: "/usr/bin/uinput"
+        state: link
