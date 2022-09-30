@@ -29,8 +29,10 @@
         method: system
 # from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
 # https://computingforgeeks.com/how-to-install-virtualbox-on-fedora-linux/
+# And this to sign https://gist.github.com/reillysiemens/ac6bea1e6c7684d62f544bd79b2182a4
+# Better install manually
 - name: Virtual box
-  hosts: sandboxes
+  hosts: disabled
   tasks:
     - name: Import public key
       become: True
@@ -47,9 +49,15 @@
       become: True
       package:
         name: 
+          - kernel-headers
+          - kernel-devel
           - "VirtualBox-6.1"
           - "virtualbox-guest-additions"
+          - openssl
         update_cache: True
+    - name: Create rsa key pair
+      become: True
+      command: bash ./sign/create.sh
 - name: Vagrant
   hosts: sandboxes
   tasks:
