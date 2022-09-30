@@ -106,7 +106,7 @@
     - name: Change shell
       become: True
       user:
-        name: "{{ ansible_env.USERNAME }}"
+        name: "{{ ansible_env.LOGNAME }}"
         shell: /bin/zsh
     - name: "Check if oh my zsh exists"
       stat:
