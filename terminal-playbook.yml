@@ -1,30 +1,53 @@
 #!/usr/bin/env ansible-playbook
 ---
+- name: Print degub info
+  hosts: sandboxes
+  tasks:
+    - debug: 
+        msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
+  tags: debug_info
 - name: Install Editor
   hosts: sandboxes
   become: False
   tasks:
-    - name: "Add git repo"
-      become: True
-      ansible.builtin.apt_repository:
-        repo: ppa:git-core/ppa
-    - name: "Add neovim repo"
-      become: True
-      ansible.builtin.apt_repository:
-        repo: ppa:neovim-ppa/stable
     - name: "Install Packages"
       become: True
       package:
         name: 
           - neovim
-          - sqlite3
-          - libsqlite3-dev
           - gcc # treesitter
-          - build-essential # treesitter
           - fzf # Search
           - ripgrep # Telescope
           - git
         update_cache: True
+    - name: "Add git repo"
+      become: True
+      ansible.builtin.apt_repository:
+        repo: ppa:git-core/ppa
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - name: "Add neovim repo"
+      become: True
+      ansible.builtin.apt_repository:
+        repo: ppa:neovim-ppa/stable
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - name: "Install Debian Packages"
+      become: True
+      package:
+        name: 
+          - sqlite3
+          - libsqlite3-dev
+          - build-essential
+        update_cache: True
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+    - name: "Install Fedora Packages"
+      become: True
+      package:
+        name: 
+          - sqlite
+          - "@development-tools"
+          - "gcc-c++"
+        update_cache: True
+      when: ansible_distribution == 'Fedora'
     - name: Make sure ssk keys are passed to guest.
       local_action: command ssh-add
     - name: Create lua directory
@@ -33,12 +56,12 @@
         state: directory
     - name: Create symlink for neovim
       ansible.builtin.file:
-        src: "/vagrant/dot-files/config/nvim/init.lua"
+        src: "{{ dot_files_path }}/dot-files/config/nvim/init.lua"
         dest: "{{ ansible_env.HOME }}/.config/nvim/init.lua"
         state: link
     - name: Create symlink for neovim 2
       ansible.builtin.file:
-        src: "/vagrant/dot-files/config/nvim/lua/user"
+        src: "{{ dot_files_path }}/dot-files/config/nvim/lua/user"
         dest: "{{ ansible_env.HOME }}/.config/nvim/lua/user"
         state: link
     - name: Create a directory if it does not exist
@@ -47,12 +70,12 @@
         state: directory
     - name: Create symlink for Tmux
       ansible.builtin.file:
-        src: "/vagrant/dot-files/.tmux.conf"
+        src: "{{ dot_files_path }}/dot-files/.tmux.conf"
         dest: "{{ ansible_env.HOME }}/.tmux.conf"
         state: link
     - name: Create symlink for Tmux 2
       ansible.builtin.file:
-        src: "/vagrant/dot-files/tmux_dev.sh"
+        src: "{{ dot_files_path }}/dot-files/tmux_dev.sh"
         dest: "{{ ansible_env.HOME }}/tmux_dev.sh"
         state: link
 
@@ -83,7 +106,7 @@
     - name: Change shell
       become: True
       user:
-        name: vagrant
+        name: "{{ ansible_env.USERNAME }}"
         shell: /bin/zsh
     - name: "Check if oh my zsh exists"
       stat:
@@ -120,3 +143,25 @@
         repo: https://github.com/zsh-users/zsh-syntax-highlighting
         dest: "{{ ansible_env.HOME }}/.oh-my-zsh/plugins/zsh-syntax-highlighting"
         depth: 1
+- name: Install Fonts
+  hosts: sandboxes
+  become: False
+  tasks:
+    - name: ensure fonts directory
+      file:
+        path: "{{ ansible_env.HOME }}/.fonts"
+        state: directory
+    - name: "Check if FiraCode Nerd exists"
+      stat:
+        path: "{{ ansible_env.HOME }}/.fonts/Fira*Code*"
+      register: result
+
+    - name: Download Fira
+      when: (result.stat.isreg is undefined) or (not result.stat.isreg)
+      ansible.builtin.unarchive:
+        src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.2.2/FiraCode.zip
+        dest: "{{ ansible_env.HOME }}/.fonts/"
+        remote_src: yes
+    - name: Reload fonts
+      command: fc-cache -f -v
+

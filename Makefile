@@ -23,4 +23,13 @@ upgrade-git:
 	sudo add-apt-repository ppa:git-core/ppa -y
 	sudo apt update
 	sudo apt upgrade git
+ansible:
+	mkdir -p ~/custom-envs
+	if [ ! -d "~/custom-envs/ansible/bin" ]; then \
+		cd ~/custom-envs; python3 -m venv ansible; \
+	fi
+	~/custom-envs/ansible/bin/pip install ansible
+ansible-terminal: ansible
+	~/custom-envs/ansible/bin/ansible-playbook ./terminal-playbook.yml --connection local --ask-become-pass
 
+	
