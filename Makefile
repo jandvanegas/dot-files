@@ -31,6 +31,7 @@ ansible:
 	~/custom-envs/ansible/bin/pip install ansible
 ansible-terminal: ansible
 	~/custom-envs/ansible/bin/ansible-playbook ./terminal-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook ./terminal-gui-playbook.yml --connection local --ask-become-pass
 
 work:
 	~/custom-envs/ansible/bin/ansible-playbook ./work-playbook.yml --connection local --ask-become-pass
