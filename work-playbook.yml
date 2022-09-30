@@ -1,4 +1,9 @@
 ---
+- name: Print degub info
+  hosts: sandboxes
+  tasks:
+    - debug: 
+        msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
 - name: Install Work Tools
   hosts: sandboxes
   become: False
@@ -22,3 +27,42 @@
           - org.telegram.desktop
         state: present
         method: system
+# from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
+# https://computingforgeeks.com/how-to-install-virtualbox-on-fedora-linux/
+- name: Virtual box
+  hosts: sandboxes
+  tasks:
+    - name: Import public key
+      become: True
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://www.virtualbox.org/download/oracle_vbox.asc 
+    - name: Virtualbox yum repo
+      when: ansible_distribution == 'Fedora' and ansible_distribution_version == '36'
+      become: True
+      ansible.builtin.copy:
+        src: ./virtualbox/virtualbox-fedora-36.repo
+        dest: "/etc/yum.repos.d/"
+    - name: "Install Packages"
+      become: True
+      package:
+        name: 
+          - "VirtualBox-6.1"
+          - "virtualbox-guest-additions"
+        update_cache: True
+- name: Vagrant
+  hosts: sandboxes
+  tasks:
+    - name: Add repository
+      when: ansible_distribution == 'Fedora'
+      become: True
+      ansible.builtin.yum_repository:
+        name: epel
+        description: EPEL YUM repo
+        baseurl: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo 
+    - name: "Install Packages"
+      become: True
+      package:
+        name: 
+          - vagrant
+        update_cache: True
