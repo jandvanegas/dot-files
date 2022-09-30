@@ -44,6 +44,7 @@
       package:
         name: 
           - sqlite
+          - sqlite-devel
           - "@development-tools"
           - "gcc-c++"
         update_cache: True

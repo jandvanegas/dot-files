@@ -13,6 +13,8 @@
       package:
         name: 
           - google-chrome-stable
+          - ulauncher
+          - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
         update_cache: True
     - name: Add flatpak
       become: True
@@ -23,8 +25,15 @@
     - name: Install Slack
       community.general.flatpak:
         name: 
-          - com.slack.Slack
-          - org.telegram.desktop
+        - com.slack.Slack
+        - org.telegram.desktop
+        - us.zoom.Zoom 
+        - com.bitwarden.desktop
+        - org.mozilla.Thunderbird
+        - md.obsidian.Obsidian
+        - com.getpostman.Postman
+        - com.calibre_ebook.calibre
+        - com.visualstudio.code
         state: present
         method: system
 # from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
