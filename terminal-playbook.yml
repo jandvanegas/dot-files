@@ -14,11 +14,12 @@
       become: True
       package:
         name: 
-          - neovim
-          - gcc # treesitter
-          - fzf # Search
-          - ripgrep # Telescope
-          - git
+        - neovim
+        - gcc # treesitter
+        - fzf # Search
+        - ripgrep # Telescope
+        - git
+        - xclip
         update_cache: True
     - name: "Add git repo"
       become: True
@@ -47,6 +48,7 @@
           - sqlite-devel
           - "@development-tools"
           - "gcc-c++"
+          - python-devel
         update_cache: True
       when: ansible_distribution == 'Fedora'
     - name: Make sure ssk keys are passed to guest.

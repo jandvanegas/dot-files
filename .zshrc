@@ -6,6 +6,16 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
+# Alias
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+alias dc='docker-compose'
+alias activate='source venv/bin/activate'
+
+# Nvim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
 # If cs (cousier for scala) is available
 if [ -d "$HOME/.local/share/coursier/bin/" ]; then
   export PATH="$HOME/.local/share/coursier/bin/:$PATH"

@@ -12,9 +12,10 @@
       become: True
       package:
         name: 
-          - google-chrome-stable
-          - ulauncher
-          - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
+        - google-chrome-stable
+        - ulauncher
+        - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
+        - wl-clipboard
         update_cache: True
     - name: Add flatpak
       become: True
@@ -22,7 +23,7 @@
         name: flathub2
         state: present
         flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
-    - name: Install Slack
+    - name: Install defaults
       community.general.flatpak:
         name: 
         - com.slack.Slack
@@ -34,6 +35,9 @@
         - com.getpostman.Postman
         - com.calibre_ebook.calibre
         - com.visualstudio.code
+        - com.todoist.Todoist
+        - com.spotify.Client
+        - com.github.xournalpp.xournalpp
         state: present
         method: system
 # from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
@@ -63,6 +67,7 @@
           - "VirtualBox-6.1"
           - "virtualbox-guest-additions"
           - openssl
+          - libffi-devel
         update_cache: True
     - name: Create rsa key pair
       become: True

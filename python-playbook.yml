@@ -1,6 +1,20 @@
 - name: Install Pyenv
   hosts: sandboxes
   tasks:
+    - name: "Install dependencies for pyenv"
+      become: True
+      package:
+        name: 
+        - bzip2
+        - bzip2-devel
+        - ncurses-devel
+        - libffi-devel
+        - readline
+        - readline-devel
+        - tk
+        - tk-devel
+        update_cache: True
+      when: ansible_distribution == 'Fedora'
     - name: Clone pyenv
       ansible.builtin.git:
         repo: https://github.com/pyenv/pyenv.git 

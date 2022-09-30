@@ -267,6 +267,7 @@ return packer.startup(function(use)
   use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
     setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
+  use 'ekickx/clipboard-image.nvim'
   -- Jupyter
   -- To install magma verify magma plugin is loaded. Running nvim with a python env that contains
   -- all dependencies. If you didn't, reload with the correct env and run manually :UpdateRemotePlugins
