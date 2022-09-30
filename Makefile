@@ -36,3 +36,6 @@ ansible-terminal: ansible
 work:
 	~/custom-envs/ansible/bin/ansible-playbook ./work-playbook.yml --connection local --ask-become-pass
 
+node:
+	~/custom-envs/ansible/bin/ansible-playbook ./node-playbook.yml --connection local --ask-become-pass
+
