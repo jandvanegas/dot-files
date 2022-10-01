@@ -12,7 +12,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias dc='docker-compose'
 alias activate='source venv/bin/activate'
 
-# Nvim
+# Nvim and also used in tmux for scroll navigation
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 

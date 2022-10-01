@@ -38,6 +38,7 @@
         - com.todoist.Todoist
         - com.spotify.Client
         - com.github.xournalpp.xournalpp
+        - org.videolan.VLC
         state: present
         method: system
 # from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
