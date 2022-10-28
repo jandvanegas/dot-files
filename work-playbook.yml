@@ -2,20 +2,22 @@
 - name: Print degub info
   hosts: sandboxes
   tasks:
-    - debug: 
+    - debug:
         msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
 - name: Install Work Tools
   hosts: sandboxes
   become: False
   tasks:
-    - name: "Installation"
+    - name: 'Installation'
       become: True
       package:
-        name: 
-        - google-chrome-stable
-        - ulauncher
-        - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
-        - wl-clipboard
+        name:
+          - google-chrome-stable
+          - ulauncher
+          - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
+          # - wl-clipboard -> has issues with vim yanking
+          - curl
+          - neofetch
         update_cache: True
     - name: Add flatpak
       become: True
@@ -25,22 +27,37 @@
         flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
     - name: Install defaults
       community.general.flatpak:
-        name: 
-        - com.slack.Slack
-        - org.telegram.desktop
-        - us.zoom.Zoom 
-        - com.bitwarden.desktop
-        - org.mozilla.Thunderbird
-        - md.obsidian.Obsidian
-        - com.getpostman.Postman
-        - com.calibre_ebook.calibre
-        - com.visualstudio.code
-        - com.todoist.Todoist
-        - com.spotify.Client
-        - com.github.xournalpp.xournalpp
-        - org.videolan.VLC
+        name:
+          - com.slack.Slack
+          - org.telegram.desktop
+          - us.zoom.Zoom
+          - com.bitwarden.desktop
+          - org.mozilla.Thunderbird
+          - md.obsidian.Obsidian
+          - com.getpostman.Postman
+          - com.calibre_ebook.calibre
+          - com.visualstudio.code
+          - com.todoist.Todoist
+          - com.spotify.Client
+          - com.github.xournalpp.xournalpp
+          - org.videolan.VLC
+          - org.kde.kdenlive # editing videos
+          - net.ankiweb.Anki
         state: present
         method: system
+- name: Install nordvpn # login with sudo nordvpn --username <username> --password <password>
+  hosts: sandboxes
+  become: True
+  tasks:
+    - name: Download nordvpn
+      shell: >
+        curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh | bash -n
+    - name: Install
+      package:
+        name:
+          - nordvpn
+        update_cache: True
+
 # from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
 # https://computingforgeeks.com/how-to-install-virtualbox-on-fedora-linux/
 # And this to sign https://gist.github.com/reillysiemens/ac6bea1e6c7684d62f544bd79b2182a4
@@ -52,21 +69,21 @@
       become: True
       ansible.builtin.rpm_key:
         state: present
-        key: https://www.virtualbox.org/download/oracle_vbox.asc 
+        key: https://www.virtualbox.org/download/oracle_vbox.asc
     - name: Virtualbox yum repo
       when: ansible_distribution == 'Fedora' and ansible_distribution_version == '36'
       become: True
       ansible.builtin.copy:
         src: ./virtualbox/virtualbox-fedora-36.repo
-        dest: "/etc/yum.repos.d/"
-    - name: "Install Packages"
+        dest: '/etc/yum.repos.d/'
+    - name: 'Install Packages'
       become: True
       package:
-        name: 
+        name:
           - kernel-headers
           - kernel-devel
-          - "VirtualBox-6.1"
-          - "virtualbox-guest-additions"
+          - 'VirtualBox-6.1'
+          - 'virtualbox-guest-additions'
           - openssl
           - libffi-devel
         update_cache: True
@@ -76,16 +93,20 @@
 - name: Vagrant
   hosts: sandboxes
   tasks:
+    - name: Config Manager
+      become: True
+      shell: >
+        dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
     - name: Add repository
-      when: ansible_distribution == 'Fedora'
+      when: ansible_distribution == 'Disactivated'
       become: True
       ansible.builtin.yum_repository:
         name: epel
         description: EPEL YUM repo
-        baseurl: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo 
-    - name: "Install Packages"
+        baseurl: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    - name: 'Install Packages'
       become: True
       package:
-        name: 
+        name:
           - vagrant
         update_cache: True

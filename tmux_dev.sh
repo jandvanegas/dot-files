@@ -14,6 +14,7 @@ then
 	# tmux resize-pane -L 50
 	tmux select-window -t $SESSION_NAME:0
 	# tmux split-window -v -p 10 -t $SESSION_NAME
+  tmux send-keys -t $SESSION_NAME:0.0 'source ./venv/bin/activate' C-m
   tmux send-keys -t $SESSION_NAME:0.0 'nvim' C-m
 
 # create console window

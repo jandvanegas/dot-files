@@ -37,6 +37,7 @@ vim.opt.shortmess:append "c"
 vim.cmd "set whichwrap+=<,>,[,]" -- <> are the arrow keys in normal and visual mode [] are the arrow kyes in insert mode
 -- vim.cmd [[set iskeyword+=-]] -- adds hiphen to the list of characters to be part of a word
 vim.opt.autowrite = true -- saves when swithching buffers
+vim.opt.autowriteall = true
 vim.opt.hidden = false -- does not allow to switch without saving (needed for autowrite to work)
 
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
@@ -56,6 +57,17 @@ vim.cmd [[ let g:python3_host_prog = "./venv/bin/python" ]]
 
 -- FixCursorHold plugin
 --vim.cmd [[
---  let g:cursorhold_updatetime = 100
+--  let g:cursorhold_updatetime = 10
 --]]
-vim.g.copilot_filetypes = { "python", "javascript" }
+-- vim.g.copilot_filetypes = { "python" = true, "javascript" = false }
+vim.cmd [[
+let g:copilot_filetypes = {
+	\ '*': v:false,
+	\ 'python': v:true,
+	\ 'javascript': v:true,
+	\ }
+]]
+vim.cmd [[
+let g:copilot_node_command =
+  \ "~/.nvm/versions/node/v17.9.1/bin/node"
+]]

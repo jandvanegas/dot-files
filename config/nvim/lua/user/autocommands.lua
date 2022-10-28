@@ -10,6 +10,7 @@ api.nvim_create_autocmd("BufRead,BufNewFile", {
   pattern = {
     "*template.yaml",
     "*role*.yaml",
+    "*Role*.yml",
     "*lambda*.yaml",
     "*s3*.yaml",
     "*dynamo*.yaml",

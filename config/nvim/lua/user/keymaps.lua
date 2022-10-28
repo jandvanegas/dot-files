@@ -172,7 +172,7 @@ keymap("n", "<leader>dx", "<cmd>lua require'dap'.terminate()<cr>", opts)
 keymap("n", "<leader>du", "<cmd>lua require'dap'.step_out()<cr>", opts)
 keymap("v", "<leader>de", "<cmd>lua require'dapui'.eval()<cr>", opts)
 -- python dap
-keymap("n", "<localleader>dm", "<cmd>lua require'dap-python'.test_method()<cr>", opts)
+keymap("n", "<localleader>dm", "<cmd>lua require'dap-python'.test_method({config={redirectOutput=true, justMyCode=false}})<cr>", opts)
 keymap("n", "<localleader>dc", "<cmd>lua require'dap-python'.test_class()<cr>", opts)
 keymap("v", "<localleader>ds", "<cmd>lua require'dap-python'.debug_selection()<cr>", opts)
 -- scala metals
@@ -180,6 +180,6 @@ keymap("n", "<localleader>sm", "<cmd>lua require'telescope'.extensions.metals.co
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
-keymap("i", "<C-l>", 'copilot#Accept("<CR>")', opts)
+keymap("i", "<C-l>", 'copilot#Accept("")', {expr=true, silent=true})
 -- rest client
 vim.keymap.set("n", "<leader>rr", "<Plug>RestNvim", opts)
