@@ -1,3 +1,7 @@
+gitbash:
+	ln -rsf ./gitbash/.bashrc ~/.bashrc
+	ln -rsf ./gitbash/.git_aliases ~/.git_aliases
+	ln -rsf ./gitbash/.python_aliases ~/.python_aliases
 vimrc:
 	ln -rsf .vimrc ~/.vimrc
 	ln -rsf .ideavimrc ~/.ideavimrc
