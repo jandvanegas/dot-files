@@ -43,6 +43,8 @@
           - org.videolan.VLC
           - org.kde.kdenlive # editing videos
           - net.ankiweb.Anki
+          - com.discordapp.Discord
+          - org.gnome.meld
         state: present
         method: system
 - name: Install nordvpn # login with sudo nordvpn --username <username> --password <password>

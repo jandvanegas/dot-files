@@ -1,0 +1,16 @@
+---
+- name: Print degub info
+  hosts: localhost
+  tasks:
+    - debug:
+        msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
+- name: Install Work Tools
+  hosts: sandboxes
+  become: False
+  tasks:
+    - name: 'Installation'
+      become: True
+      package:
+        name:
+          - sbsigntools
+        update_cache: True

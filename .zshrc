@@ -11,6 +11,7 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias dc='docker-compose'
 alias activate='source venv/bin/activate'
+alias p='python -m'
 
 # Nvim and also used in tmux for scroll navigation
 export VISUAL=nvim
@@ -20,6 +21,11 @@ export EDITOR="$VISUAL"
 if [ -d "$HOME/.local/share/coursier/bin/" ]; then
   export PATH="$HOME/.local/share/coursier/bin/:$PATH"
   eval $(cs java --jvm adopt:1.11 --env)
+fi
+
+# If Android Studio tools
+if [ -d "/app/bin/" ]; then
+  export PATH="/app/bin/:$PATH"
 fi
 
 # fzf

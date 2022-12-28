@@ -337,7 +337,7 @@ return packer.startup(function(use)
     require("toggleterm").setup()
   end }
   -- Rest
-  use { "NTBBloodbath/rest.nvim",
+  use { "rest-nvim/rest.nvim",
     requires = { "nvim-lua/plenary.nvim" },
     config = function()
       require('user.config.rest').setup()

@@ -1,30 +1,41 @@
 - name: Install Pyenv
   hosts: sandboxes
   tasks:
-    - name: "Install dependencies for pyenv"
+    - name: 'Install dependencies for pyenv'
       become: True
       package:
-        name: 
-        - bzip2
-        - bzip2-devel
-        - ncurses-devel
-        - libffi-devel
-        - readline
-        - readline-devel
-        - tk
-        - tk-devel
+        name:
+          - bzip2
+          - bzip2-devel
+          - ncurses-devel
+          - libffi-devel
+          - readline
+          - readline-devel
+          - tk
+          - tk-devel
         update_cache: True
       when: ansible_distribution == 'Fedora'
     - name: Clone pyenv
       ansible.builtin.git:
-        repo: https://github.com/pyenv/pyenv.git 
-        dest: "{{ ansible_env.HOME }}/.pyenv"
+        repo: https://github.com/pyenv/pyenv.git
+        dest: '{{ ansible_env.HOME }}/.pyenv'
         accept_hostkey: yes
     - name: Configure pyenv
-      command: src/configure 
+      command: src/configure
       args:
-        chdir: "{{ ansible_env.HOME }}/.pyenv"
+        chdir: '{{ ansible_env.HOME }}/.pyenv'
     - name: make pyenv
-      command: make -C src 
+      command: make -C src
       args:
-        chdir: "{{ ansible_env.HOME }}/.pyenv"
+        chdir: '{{ ansible_env.HOME }}/.pyenv'
+- name: Install python develop
+  hosts: sandboxes
+  tasks:
+    - name: 'Install system packages'
+      become: True
+      package:
+        name:
+          - python3-devel
+          - mysql-devel
+        update_cache: True
+      when: ansible_distribution == 'Fedora'

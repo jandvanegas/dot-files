@@ -53,3 +53,13 @@ install-udevmon:
 python:
 	~/custom-envs/ansible/bin/ansible-playbook ./python-playbook.yml --connection local --ask-become-pass
 
+sign-dependencies:
+	~/custom-envs/ansible/bin/ansible-playbook ./sign/sign-playbook.yml --connection local --ask-become-pass
+
+sign-vm:
+	cd sign; sudo bash ./post-reboot.sh
+
+sign-ubuntu:
+	# WIP
+	sudo sbsign --key /root/module-signing/MOK.priv --cert /root/module-signing/MOK.pem "$(in-core)" --output "$(output-core)"
+	sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
