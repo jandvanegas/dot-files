@@ -63,3 +63,10 @@ sign-ubuntu:
 	# WIP
 	sudo sbsign --key /root/module-signing/MOK.priv --cert /root/module-signing/MOK.pem "$(in-core)" --output "$(output-core)"
 	sudo grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
+
+jupyter-css:
+	# to find out which one is the correct run import jupyter_core; jupyter_core.paths.jupyter_config_dir() 
+	mkdir -p ~/.ipython/profile_default/static/custom
+	ln -rsf ./.ipython/profile_default/static/custom/custom.css ~/.ipython/profile_default/static/custom/custom.css
+	mkdir -p ~/.jupyter/custom
+	ln -rsf ./.ipython/profile_default/static/custom/custom.css ~/.jupyter/custom/custom.css

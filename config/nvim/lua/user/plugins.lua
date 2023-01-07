@@ -278,7 +278,9 @@ return packer.startup(function(use)
   use { 'rcarriga/nvim-notify', config = function()
     require("user.config.nvim-notify").setup()
   end }
-  use 'goerz/jupytext.vim'
+  use { 'goerz/jupytext.vim', -- pip install jupytext in the local python environment
+    disable = false
+  }
   use { "glacambre/firenvim",
     disable = true,
     run = function() vim.fn["firenvim#install"](0) end,
