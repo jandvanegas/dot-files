@@ -77,7 +77,9 @@ return packer.startup(function(use)
     },
     config = function()
       require("user.config.nvim-tree").setup()
-    end
+    end,
+    disable = false,
+
   }
 
   -- Colorschemes
@@ -93,6 +95,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" -- enable LSP
   use "williamboman/nvim-lsp-installer" -- simple to use language server installer
   use { "dense-analysis/ale",
+    disable = false,
     config = function()
       require("user.config.ale").setup()
     end
@@ -173,7 +176,8 @@ return packer.startup(function(use)
   use { "glepnir/dashboard-nvim",
     config = function()
       require("user.config.dashboard").setup()
-    end
+    end,
+    disable = false
   }
 
   -- Debug
@@ -264,8 +268,10 @@ return packer.startup(function(use)
 
   -- Markdown
   -- This needs node and yarn installed
-  use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install",
-    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+  use { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+    setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" },
+    disable = false
+  }
 
   use 'ekickx/clipboard-image.nvim'
   -- Jupyter

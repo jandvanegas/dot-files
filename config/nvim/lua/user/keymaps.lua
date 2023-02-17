@@ -91,7 +91,7 @@ keymap("n", "<leader>vb", "<cmd>GitBlameToggle<cr>", opts)
 
 -- code
 -- keymap("n", "<leader>cf", ":w <cr> | :! ~/customenvs/black/bin/black % <cr> | :e <cr>", opts)
-keymap("n", "<leader>cf", ":lua vim.lsp.buf.formatting()<cr>", opts)
+keymap("n", "<leader>cf", ":lua vim.lsp.buf.format{ async = true}<cr>", opts)
 
 -- trouble
 keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)

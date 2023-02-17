@@ -53,7 +53,7 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 
 -- Python path
-vim.cmd [[ let g:python3_host_prog = "./venv/bin/python" ]]
+vim.cmd [[ let g:python3_host_prog = "./.venv/bin/python" ]]
 
 -- FixCursorHold plugin
 --vim.cmd [[

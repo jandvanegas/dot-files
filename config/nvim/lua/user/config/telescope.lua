@@ -5,6 +5,8 @@ function M.setup()
   telescope.load_extension("file_browser")
   telescope.load_extension('dap')
   telescope.load_extension('project')
+  telescope.load_extension('notify')
+
 
   local actions = require "telescope.actions"
 
