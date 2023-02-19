@@ -31,5 +31,8 @@ null_ls.setup {
     -- python
     formatting.black.with { extra_args = { "--fast" } },
     diagnostics.flake8,
+    -- markdown
+    diagnostics.markdownlint,
+    formatting.mdformat,
   },
 }

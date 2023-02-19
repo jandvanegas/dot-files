@@ -2,7 +2,7 @@ local M = {}
 function M.setup()
   local configs = require("nvim-treesitter.configs")
   configs.setup {
-    ensure_installed = { "python", "scala", "yaml", "lua", "javascript", "http"},
+    ensure_installed = { "python", "scala", "yaml", "lua", "javascript", "http", "markdown"},
     sync_install = true,
     ignore_install = { "" }, -- List of parsers to ignore installing
     highlight = {
