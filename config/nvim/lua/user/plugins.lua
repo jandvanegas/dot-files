@@ -276,14 +276,6 @@ return packer.startup(function(use)
 
   use 'ekickx/clipboard-image.nvim'
 
-  use({
-    'jakewvincent/mkdnflow.nvim',
-    rocks = 'luautf8', -- Ensures optional luautf8 dependency is installed
-    config = function()
-      require("user.config.mkdnflow").setup()
-    end,
-    disable = true
-  })
   -- Jupyter
   -- To install magma verify magma plugin is loaded. Running nvim with a python env that contains
   -- all dependencies. If you didn't, reload with the correct env and run manually :UpdateRemotePlugins
