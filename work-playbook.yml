@@ -51,6 +51,7 @@
           - net.ankiweb.Anki
           - com.discordapp.Discord
           - org.gnome.meld
+          - org.gnome.Evolution 
         state: present
         method: system
     - name: Install Snaps
