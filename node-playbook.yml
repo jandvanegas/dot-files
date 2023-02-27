@@ -1,5 +1,5 @@
 - name: Install NVM and node
-  hosts: sandboxes
+  hosts: hosts
   tasks:
     - name: "nvm"
       shell: >

@@ -1,5 +1,5 @@
 - name: Install Pyenv
-  hosts: sandboxes
+  hosts: hosts
   tasks:
     - name: 'Install dependencies for pyenv'
       become: True
@@ -29,7 +29,7 @@
       args:
         chdir: '{{ ansible_env.HOME }}/.pyenv'
 - name: Install python develop
-  hosts: sandboxes
+  hosts: hosts
   tasks:
     - name: 'Install system packages'
       become: True

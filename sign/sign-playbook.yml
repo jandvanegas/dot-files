@@ -1,11 +1,11 @@
 ---
 - name: Print degub info
-  hosts: localhost
+  hosts: hosts
   tasks:
     - debug:
         msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
 - name: Install Work Tools
-  hosts: sandboxes
+  hosts: hosts
   become: False
   tasks:
     - name: 'Installation'

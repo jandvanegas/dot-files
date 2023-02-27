@@ -1,6 +1,6 @@
 ---
 - name: Install Fonts
-  hosts: sandboxes
+  hosts: hosts
   become: False
   tasks:
     - name: ensure fonts directory
@@ -21,10 +21,10 @@
     - name: Reload fonts
       command: fc-cache -f -v
 - name: Install Caps Lock conversion with udevmon
+  hosts: hosts
   # In Fedora you have to run `make install-udevmon` given that it's not installed by default
   # refencehttps://gist.github.com/jandvanegas/2057f4ec1d4fc29d5bb3543020a7923f 
   # https://gist.github.com/jsonMartin/9690654b13863f99b9cc344bb5bf7b0f
-  hosts: sandboxes
   become: False
   tasks:
     - name: "Install Packages"

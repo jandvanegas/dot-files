@@ -1,5 +1,5 @@
 - name: Install udevmon
-  hosts: sandboxes
+  hosts: hosts
   become: False
   tasks:
     - name: "Install Packages for Fedora"

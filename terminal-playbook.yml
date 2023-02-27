@@ -1,13 +1,13 @@
 #!/usr/bin/env ansible-playbook
 ---
 - name: Print degub info
-  hosts: sandboxes
+  hosts: hosts
   tasks:
     - debug: 
         msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
   tags: debug_info
 - name: Install Editor
-  hosts: sandboxes
+  hosts: hosts
   become: False
   tasks:
     - name: "Install Packages"
@@ -83,7 +83,6 @@
         state: link
 
 - name: Install Tmux
-  hosts: sandboxes
   become: False
   tasks:
     - name: "Install Packages"
@@ -98,7 +97,6 @@
         dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
         accept_hostkey: yes
 - name: Install zsh
-  hosts: sandboxes
   become: False
   tasks:
     - name: "Install Packages"

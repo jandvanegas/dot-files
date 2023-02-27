@@ -43,6 +43,9 @@ terminal-gui:
 work:
 	~/custom-envs/ansible/bin/ansible-playbook ./work-playbook.yml --connection local --ask-become-pass
 
+devops:
+	~/custom-envs/ansible/bin/ansible-playbook ./devops-playbook.yml --connection local --ask-become-pass
+
 node:
 	~/custom-envs/ansible/bin/ansible-playbook ./node-playbook.yml --connection local --ask-become-pass
 

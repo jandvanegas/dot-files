@@ -1,11 +1,9 @@
 ---
 - name: Print degub info
-  hosts: sandboxes
   tasks:
     - debug:
         msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
 - name: Install Work Tools
-  hosts: sandboxes
   become: False
   tasks:
     - name: 'System Installation'
@@ -60,7 +58,6 @@
         name:
           - superproductivity
 - name: Install nordvpn # login with sudo nordvpn --username <username> --password <password>
-  hosts: sandboxes
   become: True
   tasks:
     - name: Download nordvpn
@@ -105,7 +102,6 @@
       become: True
       command: bash ./sign/create.sh
 - name: Vagrant
-  hosts: sandboxes
   tasks:
     - name: Config Manager
       become: True
