@@ -113,6 +113,8 @@ keymap("n", "<leader>rb", [[ <Cmd>lua require('refactoring').refactor('Extract B
 keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]], opts)
 -- Inline variable can also pick up the identifier currently under the cursor without visual mode
 vim.api.nvim_set_keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], opts)
+-- Rename
+keymap("n", "<leader>rn", [[ <Cmd>lua vim.lsp.buf.rename()<CR>]], opts)
 
 -- JUpyter
 -- Ascending

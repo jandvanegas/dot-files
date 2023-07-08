@@ -34,30 +34,30 @@ ansible:
 	fi
 	~/custom-envs/ansible/bin/pip install ansible
 ansible-terminal: ansible
-	~/custom-envs/ansible/bin/ansible-playbook ./terminal-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./terminal-playbook.yml --connection local --ask-become-pass
 	@make terminal-gui
 
 terminal-gui:
-	~/custom-envs/ansible/bin/ansible-playbook ./terminal-gui-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./terminal-gui-playbook.yml --connection local --ask-become-pass
 
 work:
-	~/custom-envs/ansible/bin/ansible-playbook ./work-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./work-playbook.yml --connection local --ask-become-pass
 
 devops:
-	~/custom-envs/ansible/bin/ansible-playbook ./devops-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./devops-playbook.yml --connection local --ask-become-pass
 
 node:
-	~/custom-envs/ansible/bin/ansible-playbook ./node-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./node-playbook.yml --connection local --ask-become-pass
 
 install-udevmon:
 	echo "Running udevmon"
-	~/custom-envs/ansible/bin/ansible-playbook ./udevmon-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./udevmon-playbook.yml --connection local --ask-become-pass
 
 python:
-	~/custom-envs/ansible/bin/ansible-playbook ./python-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./python-playbook.yml --connection local --ask-become-pass
 
 sign-dependencies:
-	~/custom-envs/ansible/bin/ansible-playbook ./sign/sign-playbook.yml --connection local --ask-become-pass
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./sign/sign-playbook.yml --connection local --ask-become-pass
 
 sign-vm:
 	cd sign; sudo bash ./post-reboot.sh
@@ -73,3 +73,6 @@ jupyter-css:
 	ln -rsf ./.ipython/profile_default/static/custom/custom.css ~/.ipython/profile_default/static/custom/custom.css
 	mkdir -p ~/.jupyter/custom
 	ln -rsf ./.ipython/profile_default/static/custom/custom.css ~/.jupyter/custom/custom.css
+
+playbook:
+	~/custom-envs/ansible/bin/ansible-playbook playbooks/./${play}-playbook.yml --connection local --ask-become-pass

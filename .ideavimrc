@@ -91,7 +91,6 @@ nmap <leader>rf :action RenameFile<CR>
 nmap <leader>pb :action EditorBackwardParagraph<CR>
 nmap <leader>pf :action EditorForwardParagraph<CR>
 
-
 ; Zen
 nmap <leader>z  :action ToggleZenMode<CR>
 

@@ -128,7 +128,10 @@ return packer.startup(function(use)
       require("user.config.telescope").setup()
     end
   }
-  use "liuchengxu/vim-clap"
+  use {
+    "liuchengxu/vim-clap",
+    run = ":Clap install-binary!"
+  }
 
   -- Treesitter
   use {
@@ -199,7 +202,6 @@ return packer.startup(function(use)
       require("user.config.refactoring").setup()
     end,
   }
-  use { "python-rope/ropevim", disable = false }
   use "jose-elias-alvarez/null-ls.nvim"
 
   -- Scala

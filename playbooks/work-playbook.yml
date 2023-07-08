@@ -1,9 +1,11 @@
 ---
 - name: Print degub info
+  hosts: hosts
   tasks:
     - debug:
         msg: "Ansible Distribution: {{ ansible_distribution }} \n Ansible Dist version: {{ ansible_distribution_version }} \nAnsible Vars: {{ ansible_env }}"
 - name: Install Work Tools
+  hosts: hosts
   become: False
   tasks:
     - name: 'System Installation'
@@ -40,7 +42,7 @@
           - md.obsidian.Obsidian
           - com.getpostman.Postman
           - com.calibre_ebook.calibre
-          - com.visualstudio.code
+          # - com.visualstudio.code
           - com.todoist.Todoist
           - com.spotify.Client
           - com.github.xournalpp.xournalpp
@@ -50,6 +52,9 @@
           - com.discordapp.Discord
           - org.gnome.meld
           - org.gnome.Evolution 
+          - com.simplenote.Simplenote
+          - org.gimp.GIMP
+          - org.keepassxc.KeePassXC
         state: present
         method: system
     - name: Install Snaps
@@ -57,7 +62,11 @@
       community.general.snap:
         name:
           - superproductivity
+          - llama
+          - cacher
+          - storage-explorer # Azure storage explorer
 - name: Install nordvpn # login with sudo nordvpn --username <username> --password <password>
+  hosts: hosts
   become: True
   tasks:
     - name: Download nordvpn
@@ -102,6 +111,7 @@
       become: True
       command: bash ./sign/create.sh
 - name: Vagrant
+  hosts: hosts
   tasks:
     - name: Config Manager
       become: True
