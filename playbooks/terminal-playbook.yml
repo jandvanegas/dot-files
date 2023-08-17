@@ -26,12 +26,12 @@
       become: True
       ansible.builtin.apt_repository:
         repo: ppa:git-core/ppa
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      when: (ansible_distribution == 'Debian' and ansible_distribution_version < "12") or ansible_distribution == 'Ubuntu'
     - name: "Add neovim repo"
       become: True
       ansible.builtin.apt_repository:
         repo: ppa:neovim-ppa/stable
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      when: (ansible_distribution == 'Debian' and ansible_distribution_version < "12") or ansible_distribution == 'Ubuntu'
     - name: "Install Debian Packages"
       become: True
       package:
@@ -130,12 +130,14 @@
     - name: Set default zsh config
       when: (result.stat.isreg is undefined) or (not result.stat.isreg)
       ansible.builtin.copy:
-        src: .zshrc
+        src: "{{ dot_files_path }}/dot-files/.zshrc"
+        remote_src: true
         dest: "{{ ansible_env.HOME }}/.zshrc"
     - name: Set powerlevel10k config
       when: (result.stat.isreg is undefined) or (not result.stat.isreg)
       ansible.builtin.copy:
-        src: .p10k.zsh
+        src: "{{ dot_files_path }}/dot-files/.p10k.zsh"
+        remote_src: true
         dest: "{{ ansible_env.HOME }}/.p10k.zsh"
     - name: Zsh autosuggestions
       ansible.builtin.git:
