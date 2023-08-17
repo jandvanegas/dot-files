@@ -1,0 +1,8 @@
+- name: Install cli cli
+  hosts: hosts
+  become: False
+  tasks:
+    - name: Install cli Debian
+      become: True
+      ansible.builtin.shell: |
+        curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
