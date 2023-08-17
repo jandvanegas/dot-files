@@ -20,6 +20,7 @@
         - ripgrep # Telescope
         - git
         - xclip
+        - gnupg2
         update_cache: True
     - name: "Add git repo"
       become: True
@@ -83,6 +84,7 @@
         state: link
 
 - name: Install Tmux
+  hosts: hosts
   become: False
   tasks:
     - name: "Install Packages"
@@ -97,6 +99,7 @@
         dest: "{{ ansible_env.HOME }}/.tmux/plugins/tpm"
         accept_hostkey: yes
 - name: Install zsh
+  hosts: hosts
   become: False
   tasks:
     - name: "Install Packages"
