@@ -14,7 +14,7 @@
       become: True
       package:
         name: 
-        - neovim
+        - snapd
         - gcc # treesitter
         - fzf # Search
         - ripgrep # Telescope
@@ -22,15 +22,20 @@
         - xclip
         - gnupg2
         update_cache: True
+    - name: Install Snaps
+      become: True
+      retries: 2
+      delay: 2
+      register: result
+      until: result is not failed
+      community.general.snap:
+        name: nvim
+        classic: true
+        channel: 'latest/stable'
     - name: "Add git repo"
       become: True
       ansible.builtin.apt_repository:
         repo: ppa:git-core/ppa
-      when: (ansible_distribution == 'Debian' and ansible_distribution_version < "12") or ansible_distribution == 'Ubuntu'
-    - name: "Add neovim repo"
-      become: True
-      ansible.builtin.apt_repository:
-        repo: ppa:neovim-ppa/stable
       when: (ansible_distribution == 'Debian' and ansible_distribution_version < "12") or ansible_distribution == 'Ubuntu'
     - name: "Install Debian Packages"
       become: True
