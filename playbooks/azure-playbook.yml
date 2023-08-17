@@ -2,6 +2,11 @@
   hosts: hosts
   become: False
   tasks:
+    - name: "Install Dependent Packages"
+      become: True
+      package:
+        name:
+        - curl
     - name: Install cli Debian
       become: True
       ansible.builtin.shell: |
