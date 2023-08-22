@@ -2,6 +2,10 @@
   hosts: hosts
   become: False
   tasks:
+    - name: Create a if it does not exist
+      ansible.builtin.file:
+        path: "{{playbook_dir}}/out"
+        state: directory
     - get_url:
         url: "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
         dest: "{{playbook_dir}}/out/brew_install.sh"
