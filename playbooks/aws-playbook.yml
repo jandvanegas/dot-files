@@ -2,22 +2,23 @@
   hosts: hosts
   become: False
   tasks:
-    - name: Create a if it does not exist
-      ansible.builtin.file:
-        path: "{{playbook_dir}}/out"
+    - name: Create build dir
+      ansible.builtin.tempfile:
         state: directory
+        suffix: temp
+      register: build_dir
     - get_url:
         url="https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
-        dest="{{playbook_dir}}/out/awscliv2.zip"
+        dest="{{ build_dir.path }}/awscliv2.zip"
       register: get_aws_cli
     - debug: msg="solr was downloaded"
     - name: Unzip
       ansible.builtin.unarchive:
-        src: "{{playbook_dir}}/out/awscliv2.zip" 
-        dest: "{{playbook_dir}}/out/"
+        src: "{{build_dir.path}}/awscliv2.zip" 
+        dest: "{{build_dir.path}}/"
     - name: Install
       become: True
-      ansible.builtin.command: "bash {{playbook_dir}}/out/aws/install --update"
+      ansible.builtin.command: "bash {{build_dir.path}}/aws/install --update"
 - import_playbook: brew-playbook.yml
 - name: Install AWS vault
   hosts: hosts

@@ -1,0 +1,33 @@
+- name: Install terraform
+  hosts: hosts
+  become: true
+  tasks:
+    - name: Install terraform dependencies
+      ansible.builtin.apt:
+        name: 
+          - gnupg
+          - software-properties-common
+        state: present
+    - name: Add HashiCorp GPG key
+      ansible.builtin.apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+    - name: Get DEB architecture
+      shell: dpkg --print-architecture
+      register: deb_architecture
+    - name: Print architecture
+      ansible.builtin.debug:
+        msg: System {{ deb_architecture.stdout }}
+    - name: Add hashicorp repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch={{ deb_architecture.stdout }}] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+        state: present
+    - name: Install terraform
+      apt:
+        name: terraform
+        state: present
+    - name: Install terraform
+      ansible.builtin.apt:
+        name: 
+          - terraform
+        state: present
