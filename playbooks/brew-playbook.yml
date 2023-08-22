@@ -1,0 +1,18 @@
+- name: Install Brew
+  hosts: hosts
+  become: False
+  tasks:
+    - get_url:
+        url: "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+        dest: "{{playbook_dir}}/out/brew_install.sh"
+        mode: '0751'
+      name: Download brew
+      register: get_aws_cli
+    - name: Install brew
+      become: False
+      ansible.builtin.shell: |
+        CI=1 
+        {{playbook_dir}}/out/brew_install.sh
+      # Dont forget to run
+      # (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/javanegas/.zshrc
+      # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

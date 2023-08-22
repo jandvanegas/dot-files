@@ -1,0 +1,20 @@
+- name: Vagrant
+  hosts: hosts
+  tasks:
+    - name: Config Manager
+      become: True
+      shell: >
+        dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    - name: Add repository
+      when: ansible_distribution == 'Disactivated'
+      become: True
+      ansible.builtin.yum_repository:
+        name: epel
+        description: EPEL YUM repo
+        baseurl: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    - name: 'Install Packages'
+      become: True
+      package:
+        name:
+          - vagrant
+        update_cache: True

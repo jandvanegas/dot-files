@@ -27,6 +27,7 @@
           - texlive-xetex
           - texlive-collection-mathextra
           - waydroid
+          - gh
         update_cache: True
     - name: Add flatpak
       become: True
@@ -70,68 +71,6 @@
           - cacher
           - storage-explorer # Azure storage explorer
           - kuro-desktop
-- name: Install nordvpn # login with sudo nordvpn --username <username> --password <password>
-  hosts: hosts
-  become: True
-  tasks:
-    - name: Download nordvpn
-      shell: >
-        curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh | bash -n
-    - name: Install
-      package:
-        name:
-          - nordvpn
-        update_cache: True
-
-# from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
-# https://computingforgeeks.com/how-to-install-virtualbox-on-fedora-linux/
-# And this to sign https://gist.github.com/reillysiemens/ac6bea1e6c7684d62f544bd79b2182a4
-# Better install manually
-- name: Virtual box
-  hosts: disabled
-  tasks:
-    - name: Import public key
-      become: True
-      ansible.builtin.rpm_key:
-        state: present
-        key: https://www.virtualbox.org/download/oracle_vbox.asc
-    - name: Virtualbox yum repo
-      when: ansible_distribution == 'Fedora' and ansible_distribution_version == '36'
-      become: True
-      ansible.builtin.copy:
-        src: ./virtualbox/virtualbox-fedora-36.repo
-        dest: '/etc/yum.repos.d/'
-    - name: 'Install Packages'
-      become: True
-      package:
-        name:
-          - kernel-headers
-          - kernel-devel
-          - 'VirtualBox-6.1'
-          - 'virtualbox-guest-additions'
-          - openssl
-          - libffi-devel
-        update_cache: True
-    - name: Create rsa key pair
-      become: True
-      command: bash ./sign/create.sh
-- name: Vagrant
-  hosts: hosts
-  tasks:
-    - name: Config Manager
-      become: True
-      shell: >
-        dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-    - name: Add repository
-      when: ansible_distribution == 'Disactivated'
-      become: True
-      ansible.builtin.yum_repository:
-        name: epel
-        description: EPEL YUM repo
-        baseurl: https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
-    - name: 'Install Packages'
-      become: True
-      package:
-        name:
-          - vagrant
-        update_cache: True
+          - p3x-onenote
+- import_playbook: "nordvpn-playbook.yml"
+- import_playbook: "vagrant-playbook.yml"

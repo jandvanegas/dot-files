@@ -1,0 +1,12 @@
+- name: Install nordvpn # login with sudo nordvpn --username <username> --password <password>
+  hosts: hosts
+  become: True
+  tasks:
+    - name: Download nordvpn
+      shell: >
+        curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh | bash -n
+    - name: Install
+      package:
+        name:
+          - nordvpn
+        update_cache: True

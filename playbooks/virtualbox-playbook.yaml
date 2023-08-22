@@ -1,0 +1,32 @@
+# from https://www.linuxbuzz.com/how-to-install-virtualbox-on-fedora-linux/
+# https://computingforgeeks.com/how-to-install-virtualbox-on-fedora-linux/
+# And this to sign https://gist.github.com/reillysiemens/ac6bea1e6c7684d62f544bd79b2182a4
+# Better install manually
+- name: Virtual box
+  hosts: disabled
+  tasks:
+    - name: Import public key
+      become: True
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://www.virtualbox.org/download/oracle_vbox.asc
+    - name: Virtualbox yum repo
+      when: ansible_distribution == 'Fedora' and ansible_distribution_version == '36'
+      become: True
+      ansible.builtin.copy:
+        src: ./virtualbox/virtualbox-fedora-36.repo
+        dest: '/etc/yum.repos.d/'
+    - name: 'Install Packages'
+      become: True
+      package:
+        name:
+          - kernel-headers
+          - kernel-devel
+          - 'VirtualBox-6.1'
+          - 'virtualbox-guest-additions'
+          - openssl
+          - libffi-devel
+        update_cache: True
+    - name: Create rsa key pair
+      become: True
+      command: bash ./sign/create.sh

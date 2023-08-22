@@ -2,12 +2,15 @@
   hosts: hosts
   become: False
   tasks:
+    - name: Create a if it does not exist
+      ansible.builtin.file:
+        path: "{{playbook_dir}}/out"
+        state: directory
     - get_url:
         url="https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
         dest="{{playbook_dir}}/out/awscliv2.zip"
       register: get_aws_cli
-    - debug: 
-        msg="solr was downloaded"
+    - debug: msg="solr was downloaded"
     - name: Unzip
       ansible.builtin.unarchive:
         src: "{{playbook_dir}}/out/awscliv2.zip" 
@@ -15,24 +18,11 @@
     - name: Install
       become: True
       ansible.builtin.command: "bash {{playbook_dir}}/out/aws/install --update"
+- import_playbook: brew-playbook.yml
 - name: Install AWS vault
   hosts: hosts
   become: False
   tasks:
-    - get_url:
-        url: "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-        dest: "{{playbook_dir}}/out/brew_install.sh"
-        mode: '0751'
-      name: Download brew
-      register: get_aws_cli
-    - name: Install brew
-      become: False
-      ansible.builtin.shell: |
-        CI=1 
-        {{playbook_dir}}/out/brew_install.sh
-    # Dont forget to run
-    # (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/javanegas/.zshrc
-    # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     - community.general.homebrew:
         name: aws-vault
         state: latest
