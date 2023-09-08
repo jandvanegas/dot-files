@@ -12,6 +12,8 @@
       become: True
       package:
         name:
+          - python3-nautilus # needed for gsconnect
+          - nautilus-extensions # needed for gsconnect
           - google-chrome-stable
           - ulauncher
           - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
@@ -72,5 +74,10 @@
           - storage-explorer # Azure storage explorer
           - kuro-desktop
           - p3x-onenote
+    - name: Install Snaps Classic
+      become: True
+      community.general.snap:
+        name: notable
+        classic: True
 - import_playbook: "nordvpn-playbook.yml"
 - import_playbook: "vagrant-playbook.yml"
