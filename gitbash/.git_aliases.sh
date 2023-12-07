@@ -71,9 +71,13 @@ alias ggpur='ggu'
 alias ggpull='git pull origin "$(git_current_branch)"'
 alias ggpush='git push origin "$(git_current_branch)"'
 
-alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
-alias gpsup='git push --set-upstream origin $(git_current_branch)'
+function current_branch() {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo ${ref#refs/heads/}
+}
 
+alias ggsup='git branch --set-upstream-to=origin/$(current_branch)'
+alias gpsup='git push --set-upstream origin $(current_branch)'
 alias ghh='git help'
 
 alias gignore='git update-index --assume-unchanged'
