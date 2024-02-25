@@ -30,6 +30,8 @@
           - texlive-collection-mathextra
           - waydroid
           - gh
+          - nmap
+          - evince
         update_cache: True
     - name: Add flatpak
       become: True
@@ -62,6 +64,7 @@
           - com.simplenote.Simplenote
           - org.gimp.GIMP
           - org.keepassxc.KeePassXC
+          - com.syntevo.SmartGit
         state: present
         method: system
     - name: Install Snaps
@@ -74,6 +77,8 @@
           - storage-explorer # Azure storage explorer
           - kuro-desktop
           - p3x-onenote
+          - joplin-desktop
+          - color-picker
     - name: Install Snaps Classic
       become: True
       community.general.snap:

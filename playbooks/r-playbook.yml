@@ -1,0 +1,23 @@
+- name: Install R
+  hosts: hosts
+  tasks:
+  - name: 'Install dependencies'
+    become: True
+    package:
+      name:
+        - R
+        - rstudio-desktop
+        - dnf-command(copr) # https://cran.r-project.org/bin/linux/fedora/
+      update_cache: True
+  - name: Enable to install packages without compiling
+    become: True
+    community.general.copr:
+      state: enabled
+      name: iucar/cran 
+  
+  - name: 'Install other dependencies'
+    become: True
+    package:
+      name:
+        - R-CoprManager
+      update_cache: True

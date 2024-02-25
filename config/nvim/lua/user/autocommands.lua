@@ -6,7 +6,7 @@ api.nvim_create_autocmd("FileType", {
   command = [[:normal zR]]
 })
 
-api.nvim_create_autocmd("BufRead,BufNewFile", {
+api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   pattern = {
     "*template.yaml",
     "*role*.yaml",

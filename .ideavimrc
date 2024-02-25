@@ -1,123 +1,102 @@
-source ~/.vimrc
-let mapleader = ","
-set sneak ; install with plugin
-; Plugins 
-Plug 'easymotion/vim-easymotion'
-Plug 'preservim/nerdtree`
+# You can find a list of commands here: https://jb.gg/h38q75
+# Find more examples here: https://jb.gg/share-ideavimrc
+# Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+# Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+Plug 'machakann/vim-highlightedyank'
+Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 
-; Actions on Visual Mode an Normal Mode
-nmap <leader>fh :action Find<CR>
-nmap <leader>fa :action FindInPath<CR>
-map <leader>fh :action Find<CR>
+:set showmode
+:set surround
+:set dialogescape=on
+:set ignorecase
+set scrolloff=5
+set incsearch
+set sneak
+set clipboard+=unnamed
+# https://github.com/JetBrains/ideavim/wiki/ideajoin-examples
+set ideajoin
+
+let mapleader = ","
+
+# Map in Terminal
+## Navigation
+nmap W <Action>(CloseAllEditors)
+
+# Maps in visual, normal and select
+## Editing
+map <leader>cf <Action>(ReformatCode)
+map Q gq
+map <leader>co <Action>(ShowIntentionActions)
+map <leader>ci <Action>(ExpressionTypeInfo)
+map <leader>ch <Action>(ShowHoverInfo)
+map <leader>cd <action>(QuickJavaDoc)
+map <leader>cg <action>(Generate)
+
+## Refactoring
+map <leader>rm <Action>(RefactoringMenu)
+map <leader>xm <Action>(ExtractMethod)
+map <leader>xv <Action>(IntroduceVariable)
+
+## Searching
+map <leader>fA :action GotoAction<CR>
 map <leader>fa :action FindInPath<CR>
+map <leader>ff :action GotoFile<CR>
+map <leader>fs :action GotoSymbol<CR>
+map fE :action CodotaJavaScriptSearch<CR>
 
 
-; Actions on Visual Mode
-; Introduce
-map <leader>ia  :action IntroduceActionsGroup<CR>
-map <leader>ic  :action IntroduceConstant<CR>
-map <leader>if  :action IntroduceField<CR>
-map <leader>iF  :action IntroduceFunctionalParameter<CR>
-map <leader>ip  :action IntroduceParameter<CR>
-map <leader>iP  :action IntroduceParameterObject<CR>
-map <leader>iV  :action IntroduceVariable<CR>
-; Refactor
-map <leader>ri <Action>(Inline)
-map <leader>re  :action RenameElement<CR> 
-map <leader>r   :action RefactoringMenu<CR>
-; eXtract
-map <leader>xc  :action ExtractClass<CR>
-map <leader>xi  :action ExtractInclude<CR>
-map <leader>xI  :action ExtractInterface<CR>
-map <leader>xJ  :action ExtractJspTagAction<CR>
-map <leader>xm  :action ExtractMethod<CR>
-map <leader>xM  :action ExtractModule<CR>
-map <leader>xs  :action ExtractSuperclass<CR>
+# Maps in Normal mode mappings
 
-; Code
-nmap <leader>cc :action CompareClipboardWithSelection<CR>
+## Window management
+nmap <leader>nf :action SelectInProjectView<CR>
+nmap <leader>nb :action ActivateProjectToolWindow<CR>
+nmap <leader>np :action ShowNavBar<CR>
+nmap <leader>nr :action RecentFiles<CR>
+nmap <leader>nl :action RecentLocations<CR>
+nmap <leader>hb :action HideActiveWindow<CR>
+nmap <leader>tt :action ActivateTerminalToolWindow<CR>
+nmap <leader>z :action ToggleZenMode<CR>
+nmap <Tab> <Action>(NextSplitter)
 
-; Actions on Normal Mode
-; Compare
-nmap <leader>cb :action Git.CompareWithBranch<CR>
-nmap <leader>cr :action Compare.Selected<CR>
-nmap <leader>ch :action LocalHistory.ShowHistory<CR>
+## Go to
+nmap gd :action GotoDeclarationOnly<CR>
+nmap gu :action FindUsages<CR>
+nmap gi :action GotoImplementation<CR>
+nmap gp :action JumpToLastChange<CR>
 
-; Code
-nmap <leader>scc :action CodeCompletion<CR>
-nmap <leader>sci :action ShowIntentionActions<CR>
-nmap <leader>spi :action ParameterInfo<CR>
-
-nmap <leader>cf :action ReformatCode<CR>
-
-; Search
-nmap <leader>ff :action GotoFile<CR> ; find file
-nmap <leader>fo :action RecentFiles<CR> ; find old files
-nmap <leader>sa :action GotoAction<CR>
-nmap <leader>sc :action GotoClass<CR>
-nmap <leader>sl :action RecentLocations<CR>
-nmap <leader>ss :action GotoSymbol<CR>
-
-
-; Go to
-nmap <leader>gi :action GotoImplementation<CR>
-nmap <leader>gd :action GotoDeclarationOnly<CR>
-nmap <leader>gu :action ShowUsages<CR>
-nmap <leader>gn <Action>(NextDiff)
-nmap <leader>gb <Action>(PreviousDiff)
-
-; Generate
-nmap <leader>gg :action Generate<CR>
-
-; Suggestions
-nmap <leader>h  :action QuickJavaDoc<CR>
-;nmap <leader>t  :action ExpressionTypeInfo<CR>
-
-;Terminal
-nmap <Leader>t :action ActivateTerminalToolWindow<CR>
-
-; Navigation
-nmap <leader>nn :action ShowNavBar<CR>
-nmap <leader>nb :NERDTree<CR>
-nmap <leader>ni <Action>(SelectIn)
-nmap <leader>nf <Action>(SelectInProjectView)
-nmap <C-h> <Action>(SelectInProjectView)
-nmap <leader>hb :action HideAllWindows<CR>
-
-; Refactor
-nmap <leader>rf :action RenameFile<CR>
-
-nmap <leader>pb :action EditorBackwardParagraph<CR>
-nmap <leader>pf :action EditorForwardParagraph<CR>
-
-; Zen
-nmap <leader>z  :action ToggleZenMode<CR>
-
-; Running
-nmap <leader>rr :action Run<CR>
-nmap <leader>rb :action BuildArtifact<CR>
-nmap <leader>ro :action NavBarToolBar<CR> ; Run options
-nmap <leader>rh <Action>(RunContext)
-
-; Debug
-nmap <leader>dr :action Debug<CR>
-nmap <leader>db :action ToggleLineBreakpoint<CR>
-nmap <leader>dh <Action>(RunClass)
-
-; Version
-nmap <leader>vb <Action>(Annotate) ; version blame
-; Appereance
-nmap <leader>ei <Action>(EditorIncreaseFontSize)
-nmap <leader>ed <Action>(EditorDecreaseFontSize)
-
-
+## Moving around
+nmap [ :action Back<CR>
+nmap ] :action Forward<CR>
+nmap <M-[> :action EditorBackwardParagraph<CR>
+nmap <M-]> :action EditorForwardParagraph<CR>
 nmap { :action GotoPreviousError<CR>
 nmap } :action GotoNextError<CR>
+nmap - :action CollapseAllRegions<CR>
+nmap + :action ExpandAllRegions<CR> 
+nmap = :action ExpandAllToLevel1<CR>
+nmap <Space> :action AceAction<CR>
+nmap % :action EditorMatchBrace<CR>
 
-; nmap + :action ExpandRegionRecursively<CR> ; Use native zO instead
-; nmap - :action CollapseRegionRecursively<CR> ; Use native zC instead
-; nmap [[ <Action>(Back) ; Use ctrl o instead
-; nmap ]] <Action>(Forward) ; Use ctrl i instead
-; nmap = :action ExpandAllToLevel1<CR> ; Use native zR instead
+## Run & Debugging
+nmap <leader>dc <Action>(Debug)
+nmap <leader>dr <Action>(ConfigurationXDebuggerResumeAction)
+nmap <leader>df <Action>(DebugClass)
+nmap <leader>dt <Action>(ToggleLineBreakpoint)
+nmap <leader>do <Action>(StepOver)
+nmap <leader>ds <Action>(Stop)
 
+nmap <leader>rc <action>(Run)
+nmap <leader>rf <action>(RunClass)
+nmap <leader>rs <Action>(Stop)
+
+
+# Maps in Insert mode mappings
+## Copilot
+imap <C-L> <Action>(copilot.applyInlaysNextWord)
+imap <C-M-L> <Action>(copilot.applyInlaysNextLine)
+imap <C-]> <Action>(copilot.disposeInlays)
+imap <M-]> <Action>(copilot.cycleNextInlays)
+imap <M-[> <Action>(copilot.cyclePrevInlays)
+imap <M-\> <Action>(copilot.requestCompletions)
