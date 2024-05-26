@@ -220,7 +220,7 @@ return packer.startup(function(use)
   -- Files Management
   use { 'akinsho/bufferline.nvim',
     disable = false,
-    tag = "v2.*",
+    tag = "*",
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('user.config.bufferline').setup()
@@ -310,6 +310,7 @@ return packer.startup(function(use)
     requires = {
       "theHamsta/nvim-dap-virtual-text",
       "rcarriga/nvim-dap-ui",
+      "nvim-neotest/nvim-nio",
       "mfussenegger/nvim-dap-python",
     },
     config = function()
@@ -352,12 +353,14 @@ return packer.startup(function(use)
     end
   }
   -- Terminal
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
     require("toggleterm").setup()
   end }
   -- Rest
   use { "rest-nvim/rest.nvim",
+    disable = true,
     requires = { "nvim-lua/plenary.nvim" },
+    rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
     config = function()
       require('user.config.rest').setup()
     end

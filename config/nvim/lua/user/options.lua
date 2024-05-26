@@ -38,7 +38,7 @@ vim.cmd "set whichwrap+=<,>,[,]" -- <> are the arrow keys in normal and visual m
 -- vim.cmd [[set iskeyword+=-]] -- adds hiphen to the list of characters to be part of a word
 vim.opt.autowrite = true -- saves when swithching buffers
 vim.opt.autowriteall = true
-vim.opt.hidden = false -- does not allow to switch without saving (needed for autowrite to work)
+vim.opt.hidden = true -- does not allow to switch without saving (needed for autowrite to work). Should be false for saving, but toggleterm needs true.
 
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
@@ -65,9 +65,11 @@ let g:copilot_filetypes = {
 	\ '*': v:false,
 	\ 'python': v:true,
 	\ 'javascript': v:true,
+	\ 'lua': v:true,
+	\ 'json': v:true,
 	\ }
 ]]
 vim.cmd [[
 let g:copilot_node_command =
-  \ "~/.nvm/versions/node/v17.9.1/bin/node"
+  \ "~/.nvm/versions/node/v18.20.3/bin/node"
 ]]

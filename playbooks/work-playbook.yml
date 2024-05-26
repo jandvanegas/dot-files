@@ -12,26 +12,26 @@
       become: True
       package:
         name:
-          - python3-nautilus # needed for gsconnect
-          - nautilus-extensions # needed for gsconnect
-          - google-chrome-stable
-          - ulauncher
-          - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
-          # - wl-clipboard -> has issues with vim yanking
-          - curl
-          - neofetch
-          - vnstat
-          # - gnome-pomodoro
-          - snapd
-          - ghostwriter
-          - go
-          - pandoc
-          - texlive-xetex
-          - texlive-collection-mathextra
-          - waydroid
-          - gh
-          - nmap
-          - evince
+        - python3-nautilus # needed for gsconnect
+        - nautilus-extensions # needed for gsconnect
+        - google-chrome-stable
+        - ulauncher
+        - wmctrl # https://github.com/Ulauncher/Ulauncher/wiki/Hotkey-In-Wayland
+        # - wl-clipboard -> has issues with vim yanking
+        - curl
+        - neofetch
+        - vnstat
+        # - gnome-pomodoro
+        - snapd
+        - ghostwriter
+        - go
+        - pandoc
+        - texlive-xetex
+        - texlive-collection-mathextra
+        - waydroid
+        - gh
+        - nmap
+        - evince
         update_cache: True
     - name: Add flatpak
       become: True
