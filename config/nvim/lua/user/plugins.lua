@@ -220,12 +220,13 @@ return packer.startup(function(use)
   -- Files Management
   use { 'akinsho/bufferline.nvim',
     disable = false,
-    tag = "*",
+    tag = "v*",
     requires = 'kyazdani42/nvim-web-devicons',
     config = function()
       require('user.config.bufferline').setup()
     end,
   }
+
   use { 'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
@@ -276,7 +277,9 @@ return packer.startup(function(use)
     disable = false
   }
 
-  use 'ekickx/clipboard-image.nvim'
+  use ({'ekickx/clipboard-image.nvim',
+    disable = true
+  })
   use({
     'jakewvincent/mkdnflow.nvim',
     rocks = 'luautf8', -- Ensures optional luautf8 dependency is installed

@@ -23,6 +23,13 @@ api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   command = [[set filetype=yaml.cloudformation]]
 })
 
+api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = { "*.md" },
+  command = [[set tabstop=2 shiftwidth=2 expandtab]],
+
+})
+
+
 -- api.nvim_create_autocmd("FileType", {
 --   pattern = "*",
 --   callback = function()

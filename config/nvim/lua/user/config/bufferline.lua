@@ -1,7 +1,8 @@
 local M = {}
 
 function M.setup()
-  require("bufferline").setup {
+  local bufferline = require("bufferline")
+  bufferline.setup {
     options = {
       numbers = 'ordinal',
       diagnostics = "nvim_lsp",
