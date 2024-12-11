@@ -13,7 +13,7 @@ function M.setup()
   telescope.setup {
     defaults = {
       history = {
-        path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+        -- path = '~/.local/share/nvim/databases/telescope_history.sqlite3',
         limit = 100,
       },
       prompt_prefix = " ",

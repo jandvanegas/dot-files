@@ -114,13 +114,14 @@ return packer.startup(function(use)
 
   -- Finding
   use { "nvim-telescope/telescope.nvim",
+    disable = false,
     requires = {
       'nvim-telescope/telescope-media-files.nvim',
       "nvim-telescope/telescope-file-browser.nvim",
       "nvim-telescope/telescope-dap.nvim",
-      "nvim-telescope/telescope-smart-history.nvim",
       "nvim-telescope/telescope-project.nvim",
       "nvim-telescope/telescope-live-grep-args.nvim",
+      "nvim-telescope/telescope-smart-history.nvim",
       "kkharji/sqlite.lua", -- required for telescope-smart-history to work and also sudo apt-get install sqlite3 libsqlite3-dev
     },
     config = function()
