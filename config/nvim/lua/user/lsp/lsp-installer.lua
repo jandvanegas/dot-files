@@ -44,7 +44,7 @@ lspconfig.eslint.setup {
 --  on_attach = opts.on_attach,
 --  capabilities = opts.capabilities,
 --}
-lspconfig.tsserver.setup {
+lspconfig.ts_ls.setup {
   on_attach = opts.on_attach,
   capabilities = opts.capabilities,
 }
